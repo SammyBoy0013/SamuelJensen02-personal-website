@@ -28,17 +28,17 @@ function Racing() {
 
   return (
     <>
-      <PageHeader eyebrow={r("eyebrow")} title={t("pages.racing.title")} photo={media.startLine} focus="50% 50%" />
+      <PageHeader eyebrow={r("eyebrow")} title={t("pages.racing.title")} photo={media.sideBySide} focus="50% 60%" />
       <SectionTabs pageKey="racing" />
 
       <Section id="results" title={section("results")}>
         <Prose paragraphs={[racingIntro]} />
         <Image
-          src={media.sideBySide.src}
-          alt={media.sideBySide.alt}
+          src={media.hero.src}
+          alt={media.hero.alt}
           placeholder="blur"
           sizes="(min-width: 1360px) 1200px, 100vw"
-          className="aspect-[21/9] w-full rounded object-cover object-[50%_70%]"
+          className="aspect-[21/9] w-full rounded object-cover object-[50%_40%]"
         />
 
         <ExpandableResults

@@ -29,7 +29,7 @@ function About() {
   return (
     <>
       {/* The Culford motto is the headline (phase 2 prompt). */}
-      <PageHeader eyebrow={t("pages.about.title")} title={headline} titleLang="la" photo={media.culfordDinner} focus="50% 30%" />
+      <PageHeader eyebrow={t("pages.about.title")} title={headline} titleLang="la" photo={media.culfordDinner} focus="50% 20%" whole />
       <SectionTabs pageKey="about" />
 
       <Section id="introduction" title={section("introduction")}>

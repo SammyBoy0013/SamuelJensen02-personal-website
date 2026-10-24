@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Samuel Jensen — Gallery</title>
+<!-- Design reference only: exported from the design canvas. Layout, spacing and colours are a guide; docs/01-specification.md and docs/02-design-system.md take precedence. -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F5F2;color:#16131A;font-family:'Archivo',system-ui,sans-serif}
+a{color:#16131A}a:hover{color:#C2105A}
+.navlink{color:inherit;text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;border-bottom:2px solid transparent;transition:border-color .2s}
+.navlink:hover{color:inherit;border-bottom-color:#E8196F}
+.navlink.on{border-bottom-color:#E8196F}
+.drawerlink{color:#F7F5F2;text-decoration:none;font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.15}
+.drawerlink:hover{color:#E8196F}
+.thumb{display:block;width:100%;padding:0;border:0;background:#16131A;cursor:zoom-in;border-radius:4px;overflow:hidden;margin:0 0 16px;break-inside:avoid}
+.thumb img{display:block;width:100%;height:auto;transition:transform .5s ease,opacity .3s}
+.thumb:hover img{transform:scale(1.03);opacity:.92}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page{animation:enter .5s cubic-bezier(.2,.7,.2,1) both}
+@media (max-width:900px){.navlinks{display:none!important}.burger{opacity:1!important;pointer-events:auto!important;transform:none!important}.masonry{column-count:2!important}}
+@media (max-width:560px){.masonry{column-count:1!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="page" style="min-height: 100vh; background: #F7F5F2;">
+
+<header style="{{barStyle}}">
+<a href="Main.dc.html" aria-label="Home" style="color: inherit; display: flex;"><svg viewBox="0 0 120 48" width="78" height="32" aria-hidden="true"><text x="60" y="39" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="40" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text></svg></a>
+<nav class="navlinks" aria-label="Main" style="display: flex; gap: 28px;">
+<a class="navlink" href="Main.dc.html">Home</a>
+<a class="navlink" href="About.dc.html">About</a>
+<a class="navlink" href="Engineering.dc.html">Engineering</a>
+<a class="navlink" href="Rowing.dc.html">Rowing</a>
+<a class="navlink" href="Golf.dc.html">Golf</a>
+<a class="navlink on" href="Gallery.dc.html" aria-current="page">Gallery</a>
+<a class="navlink" href="CV.dc.html">CV</a>
+<a class="navlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div class="navlinks" style="display: flex; gap: 10px; font-size: 12px; letter-spacing: 0.1em;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #5A5560;">DA</span><span style="color: #5A5560;">FR</span></div>
+</header>
+
+<main style="max-width: 1320px; margin: 0 auto; padding: 140px clamp(20px, 5vw, 80px) 96px; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Gallery</div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(56px, 8vw, 120px); line-height: 0.9;">On and off the water</h1>
+</div>
+<div role="group" aria-label="Filter photos" style="display: flex; gap: 8px; flex-wrap: wrap;">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button type="button" onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="{{f.style}}">{{f.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div class="masonry" style="column-count: 3; column-gap: 16px;">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="9">
+<button type="button" class="thumb" onClick="{{p.open}}" aria-label="Open photo: {{p.alt}}"><img src="{{p.src}}" alt="{{p.alt}}" loading="lazy"></button>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #5A5560;">Photo credits: [photographer names, e.g. EUSA Zagreb 2026 official photographer, Mathias Engmark]. Everyone pictured has agreed to appear: [confirm].</p>
+</main>
+
+<footer style="background: #16131A; color: #B9B3BF; padding: 48px clamp(20px, 5vw, 80px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; font-size: 13px;">
+<div style="display: flex; align-items: center; gap: 16px;">
+<svg viewBox="110 110 340 340" width="56" height="56" role="img" aria-label="Samuel Gustav Jensen seal" style="color: #F7F5F2;"><circle cx="280" cy="280" r="170" fill="none" stroke="currentColor" stroke-width="3"></circle><circle cx="280" cy="280" r="120" fill="none" stroke="currentColor" stroke-width="1"></circle><text x="280" y="306" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="92" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text><line x1="250" y1="330" x2="310" y2="330" stroke="#E8196F" stroke-width="4" stroke-linecap="round"></line></svg>
+<span>© 2026 Samuel Gustav Jensen</span>
+</div>
+<div style="display: flex; gap: 20px;"><a href="Contact.dc.html#privacy" style="color: #B9B3BF;">Privacy notice</a><a href="Contact.dc.html" style="color: #B9B3BF;">Contact</a></div>
+</footer>
+
+<sc-if value="{{hasLightbox}}" hint-placeholder-val="{{false}}">
+<div role="dialog" aria-modal="true" aria-label="Photo viewer" style="position: fixed; inset: 0; z-index: 9; background: rgba(22,19,26,0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px;">
+<button type="button" aria-label="Close photo" onClick="{{closeLightbox}}" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
+<img src="{{lightbox.src}}" alt="{{lightbox.alt}}" style="max-width: 100%; max-height: 82vh; object-fit: contain; border-radius: 2px;">
+<div style="display: flex; align-items: center; gap: 24px; color: #E9E4EC; font-size: 14px;">
+<button type="button" aria-label="Previous photo" onClick="{{prev}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer;">←</button>
+<span>{{lightbox.alt}}</span>
+<button type="button" aria-label="Next photo" onClick="{{next}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer;">→</button>
+</div>
+</div>
+</sc-if>
+
+<button class="burger" type="button" aria-label="Open menu" onClick="{{openMenu}}" style="{{burgerStyle}}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+<div aria-hidden="true" onClick="{{closeMenu}}" style="{{scrimStyle}}"></div>
+<aside aria-label="Menu" style="{{drawerStyle}}">
+<button type="button" aria-label="Close menu" onClick="{{closeMenu}}" style="align-self: flex-end; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
+<nav aria-label="Menu" style="display: flex; flex-direction: column; gap: 14px;">
+<a class="drawerlink" href="Main.dc.html">Home</a>
+<a class="drawerlink" href="About.dc.html">About</a>
+<a class="drawerlink" href="Engineering.dc.html">Engineering</a>
+<a class="drawerlink" href="Rowing.dc.html">Rowing</a>
+<a class="drawerlink" href="Golf.dc.html">Golf</a>
+<a class="drawerlink" href="Gallery.dc.html" style="color: #E8196F;">Gallery</a>
+<a class="drawerlink" href="CV.dc.html">CV</a>
+<a class="drawerlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div style="margin-top: auto; display: flex; gap: 14px; font-size: 13px; letter-spacing: 0.1em; color: #F7F5F2;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #B9B3BF;">DA</span><span style="color: #B9B3BF;">FR</span></div>
+</aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { down: false, open: false, filter: 'all', shown: -1 };
+    this.lastY = 0;
+    this.onWinScroll = () => {
+      const y = window.scrollY || 0;
+      const d = y - this.lastY;
+      this.lastY = y;
+      const down = y > 120 && d > 4 ? true : (d < -4 || y <= 120 ? false : this.state.down);
+      if (down !== this.state.down) this.setState({ down });
+    };
+    this.all = [
+      { src: '../public/media/hero-single-sculling.jpg', alt: 'Sculling Balder in Zagreb', cat: 'rowing' },
+      { src: '../public/media/carrying-the-single.jpg', alt: 'Carrying the single up from the water', cat: 'rowing' },
+      { src: '../public/media/racing-side-by-side.jpg', alt: 'Side by side in a heat, Zagreb', cat: 'rowing' },
+      { src: '../public/media/golf-portrait.jpg', alt: 'Ball in hand on the course', cat: 'golf' },
+      { src: '../public/media/rowing-crew-lift.jpg', alt: 'Lifting the boat on the jetty', cat: 'rowing' },
+      { src: '../public/media/gallery-zagreb-trio.jpg', alt: 'Odense crew at the boat park, Zagreb', cat: 'rowing' },
+      { src: '../public/media/gallery-under-the-bridge.jpg', alt: 'Under the bridge on a training row', cat: 'rowing' },
+      { src: '../public/media/racing-start-line.jpg', alt: 'The start line, lane four', cat: 'rowing' },
+      { src: '../public/media/gallery-tug-of-war.jpg', alt: 'Tug of war at a student event', cat: 'life' },
+      { src: '../public/media/gallery-harbour-racing.jpg', alt: 'Two crews racing in the harbour', cat: 'rowing' },
+      { src: '../public/media/gallery-rigging.jpg', alt: 'Rigging the single in Zagreb', cat: 'rowing' },
+      { src: '../public/media/culford-dinner.jpg', alt: 'Culford old boys’ dinner', cat: 'life' },
+      { src: '../public/media/gallery-boarding.jpg', alt: 'Boarding the boat at the jetty', cat: 'rowing' },
+      { src: '../public/media/gallery-smile.jpg', alt: 'Laughing during a student event', cat: 'life' },
+      { src: '../public/media/gallery-medals.jpg', alt: 'Medals at the waterside', cat: 'rowing' },
+      { src: '../public/media/gallery-zagreb-backs.jpg', alt: 'Club colours from behind', cat: 'rowing' },
+      { src: '../public/media/gallery-tek-dysten.jpg', alt: 'Tek Dysten, organising team', cat: 'life' },
+      { src: '../public/media/gallery-stands.jpg', alt: 'In the stands at the championship', cat: 'rowing' },
+      { src: '../public/media/zagreb-team-dock.jpg', alt: 'The team on the jetty in Zagreb', cat: 'rowing' }
+    ];
+  }
+  componentDidMount() { window.addEventListener('scroll', this.onWinScroll, { passive: true }); }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onWinScroll); }
+  renderVals() {
+    const { down, open, filter, shown } = this.state;
+    const barStyle = 'position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px clamp(20px, 5vw, 80px); color: #16131A; background: rgba(247,245,242,0.96); border-bottom: 1px solid #E4DFE3; transition: transform .35s ease;' + (down ? ' transform: translateY(-110%);' : '');
+    const burgerStyle = 'position: fixed; top: 16px; right: clamp(16px, 4vw, 48px); z-index: 6; width: 52px; height: 52px; border-radius: 50%; border: 0; background: #E8196F; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity .3s ease, transform .3s ease;' + (down ? ' opacity: 1;' : ' opacity: 0; pointer-events: none; transform: scale(0.8);');
+    const drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; z-index: 8; width: min(420px, 100%); box-sizing: border-box; padding: 24px 40px 40px; background: #16131A; border-left: 3px solid #E8196F; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; transition: transform .45s cubic-bezier(.7,0,.2,1);' + (open ? '' : ' transform: translateX(105%);');
+    const scrimStyle = 'position: fixed; inset: 0; z-index: 7; background: rgba(22,19,26,0.45); transition: opacity .35s ease;' + (open ? ' opacity: 1;' : ' opacity: 0; pointer-events: none;');
+    const list = this.all.filter(p => filter === 'all' || p.cat === filter);
+    const photos = list.map((p, i) => ({ ...p, open: () => this.setState({ shown: i }) }));
+    const defs = [['all', 'All'], ['rowing', 'Rowing'], ['golf', 'Golf'], ['life', 'Life']];
+    const filters = defs.map(([id, label]) => ({
+      label,
+      pressed: filter === id ? 'true' : 'false',
+      style: 'min-height: 44px; padding: 10px 18px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; ' + (filter === id ? 'background: #16131A; color: #F7F5F2; border: 1px solid #16131A;' : 'background: #FFFFFF; color: #16131A; border: 1px solid #E4DFE3;'),
+      pick: () => this.setState({ filter: id, shown: -1 })
+    }));
+    const hasLightbox = shown >= 0 && shown < list.length;
+    const n = list.length;
+    return {
+      barStyle, burgerStyle, drawerStyle, scrimStyle, photos, filters, hasLightbox,
+      lightbox: hasLightbox ? list[shown] : { src: '', alt: '' },
+      closeLightbox: () => this.setState({ shown: -1 }),
+      prev: () => this.setState({ shown: (shown - 1 + n) % n }),
+      next: () => this.setState({ shown: (shown + 1) % n }),
+      openMenu: () => this.setState({ open: true }),
+      closeMenu: () => this.setState({ open: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

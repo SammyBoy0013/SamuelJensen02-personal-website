@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Samuel Jensen — Rowing</title>
+<!-- Design reference only: exported from the design canvas. Layout, spacing and colours are a guide; docs/01-specification.md and docs/02-design-system.md take precedence. -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F5F2;color:#16131A;font-family:'Archivo',system-ui,sans-serif}
+a{color:#16131A}a:hover{color:#C2105A}
+.navlink{color:inherit;text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;border-bottom:2px solid transparent;transition:border-color .2s}
+.navlink:hover{color:inherit;border-bottom-color:#E8196F}
+.navlink.on{border-bottom-color:#E8196F}
+.tab{color:#16131A;text-decoration:none;font-size:14px;padding:14px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:#16131A;border-bottom-color:#E8196F}
+.drawerlink{color:#F7F5F2;text-decoration:none;font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.15}
+.drawerlink:hover{color:#E8196F}
+.sublink{color:#B9B3BF;text-decoration:none;font-size:13px}
+.sublink:hover{color:#F7F5F2}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page{animation:enter .5s cubic-bezier(.2,.7,.2,1) both}
+@media (max-width:900px){.navlinks{display:none!important}.burger{opacity:1!important;pointer-events:auto!important;transform:none!important}.cols{grid-template-columns:minmax(0,1fr)!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="page" style="min-height: 100vh; background: #F7F5F2;">
+
+<header style="{{barStyle}}">
+<a href="Main.dc.html" aria-label="Home" style="color: inherit; display: flex;"><svg viewBox="0 0 120 48" width="78" height="32" aria-hidden="true"><text x="60" y="39" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="40" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text></svg></a>
+<nav class="navlinks" aria-label="Main" style="display: flex; gap: 28px;">
+<a class="navlink" href="Main.dc.html">Home</a>
+<a class="navlink" href="About.dc.html">About</a>
+<a class="navlink" href="Engineering.dc.html">Engineering</a>
+<a class="navlink on" href="Rowing.dc.html" aria-current="page">Rowing</a>
+<a class="navlink" href="Golf.dc.html">Golf</a>
+<a class="navlink" href="Gallery.dc.html">Gallery</a>
+<a class="navlink" href="CV.dc.html">CV</a>
+<a class="navlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div class="navlinks" style="display: flex; gap: 10px; font-size: 12px; letter-spacing: 0.1em;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #5A5560;">DA</span><span style="color: #5A5560;">FR</span></div>
+</header>
+
+<section aria-label="Rowing" style="position: relative; height: 72vh; min-height: 460px; overflow: hidden; background: #16131A;">
+<img src="../public/media/rowing-crew-lift.jpg" alt="The crew lifting their boat overhead on the jetty" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%;">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(22,19,26,0.7) 0%, rgba(22,19,26,0) 55%);"></div>
+<div style="position: absolute; left: clamp(20px, 5vw, 80px); bottom: 48px; color: #FFFFFF; display: flex; flex-direction: column; gap: 10px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #FFD3E4;">Odense Roklub · U23</div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(56px, 8vw, 120px); line-height: 0.9;">Rowing</h1>
+</div>
+</section>
+
+<nav aria-label="Rowing sections" style="position: sticky; top: 0; z-index: 3; background: #F7F5F2; border-bottom: 1px solid #E4DFE3; padding: 0 clamp(20px, 5vw, 80px); display: flex; gap: 32px; overflow-x: auto;">
+<a class="tab" href="#overview">Overview</a>
+<a class="tab" href="#racing">Racing</a>
+<a class="tab" href="#bests">Personal bests</a>
+<a class="tab" href="#log">Training log and stats</a>
+</nav>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px);">
+
+<section id="overview" class="cols" style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); padding: 96px 0; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 20px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Overview</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">From the six seat to the single</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: #3A3540;">I started rowing about two years ago, at first simply to keep fit. A first season in the six seat of the university eight became a second season in the single scull, and the sport quickly became serious.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: #3A3540;">I now train with Odense Roklub's U23 programme as a member of Syddansk Elite, combining water sessions, ergometer work and three lifting sessions a week. The aim is the Danish national-team selection for 2027.</p>
+<div style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 8px;">
+<div><div style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 600;">1x</div><div style="font-size: 13px; color: #5A5560;">Main boat class</div></div>
+<div><div style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 600;">12</div><div style="font-size: 13px; color: #5A5560;">Sessions a week</div></div>
+<div><div style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 600;">2027</div><div style="font-size: 13px; color: #5A5560;">National-team target</div></div>
+</div>
+</div>
+<figure style="margin: 0; position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 9 / 16; max-height: 640px; background: #16131A;">
+<video src="../public/media/carrying-the-single.mp4" poster="../public/media/carrying-the-single.jpg" autoplay="" muted="" loop="" playsinline="" aria-label="Carrying the single up from the water in Zagreb" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+<figcaption style="position: absolute; left: 16px; bottom: 14px; color: #FFFFFF; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Zagreb, 2026</figcaption>
+</figure>
+</section>
+
+<section id="racing" style="padding: 96px 0; border-top: 1px solid #E4DFE3; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Racing</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">Calendar and results</h2>
+</div>
+<p style="margin: 0; font-size: 14px; color: #5A5560; max-width: 360px;">Races move from the calendar into the results automatically once their date has passed.</p>
+</div>
+<img src="../public/media/racing-start-line.jpg" alt="The start line in Zagreb, Balder in lane four" style="width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: 4px; display: block;">
+<div class="cols" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 0;">
+<h3 style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #5A5560;">Upcoming</h3>
+<sc-for list="{{upcoming}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; gap: 20px; padding: 18px 0; border-top: 1px solid #E4DFE3;">
+<div style="min-width: 76px; font-family: 'Bodoni Moda', serif; font-size: 22px; font-weight: 600; color: #C2105A;">{{r.date}}</div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 17px; font-weight: 600;">{{r.name}}</div><div style="font-size: 14px; color: #5A5560;">{{r.detail}}</div></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column;">
+<h3 style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #5A5560;">Results</h3>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 480px;">
+<thead><tr style="text-align: left; color: #5A5560; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;"><th style="padding: 10px 12px 10px 0; font-weight: 500;">Date</th><th style="padding: 10px 12px; font-weight: 500;">Event</th><th style="padding: 10px 12px; font-weight: 500;">Boat</th><th style="padding: 10px 0 10px 12px; font-weight: 500; text-align: right;">Result</th></tr></thead>
+<tbody>
+<sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+<tr style="border-top: 1px solid #E4DFE3;"><td style="padding: 16px 12px 16px 0; color: #5A5560; white-space: nowrap;">{{r.date}}</td><td style="padding: 16px 12px; font-weight: 600;">{{r.name}}</td><td style="padding: 16px 12px;">{{r.boat}}</td><td style="padding: 16px 0 16px 12px; text-align: right; color: #C2105A; font-weight: 600;">{{r.result}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+<section id="bests" style="padding: 96px 0; border-top: 1px solid #E4DFE3; display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Personal bests</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">On the ergometer</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: #E4DFE3; border: 1px solid #E4DFE3;">
+<sc-for list="{{bests}}" as="b" hint-placeholder-count="5">
+<div style="background: #FFFFFF; padding: 28px 24px; display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560;">{{b.label}}</div>
+<div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 600; line-height: 1;">{{b.value}}</div>
+<div style="font-size: 13px; color: #5A5560;">{{b.when}}</div>
+</div>
+</sc-for>
+</div>
+<div class="cols" style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 48px; align-items: center;">
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid #E4DFE3; border-radius: 4px; padding: 24px;">
+<figcaption style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560; margin-bottom: 12px;">2,000 m progression</figcaption>
+<svg viewBox="0 0 660 250" width="100%" role="img" aria-label="2,000 metre ergometer times: 6:55.4 in January 2025, 6:35.8 in May 2025, about 6:33 in December 2025 and about 6:30 in September 2026; goal under 6:15">
+<line x1="60" y1="20" x2="640" y2="20" stroke="#EFEAEE"></line><line x1="60" y1="100" x2="640" y2="100" stroke="#EFEAEE"></line><line x1="60" y1="180" x2="640" y2="180" stroke="#EFEAEE"></line>
+<text x="50" y="24" text-anchor="end" font-size="12" fill="#5A5560">7:00</text><text x="50" y="104" text-anchor="end" font-size="12" fill="#5A5560">6:40</text><text x="50" y="184" text-anchor="end" font-size="12" fill="#5A5560">6:20</text>
+<line x1="60" y1="200" x2="640" y2="200" stroke="#E8196F" stroke-width="1.5" stroke-dasharray="6 6"></line>
+<text x="640" y="220" text-anchor="end" font-size="12" fill="#C2105A">Goal: under 6:15</text>
+<polyline points="60,38 168,117 357,128 600,140" fill="none" stroke="#16131A" stroke-width="2.5" stroke-linejoin="round"></polyline>
+<circle cx="60" cy="38" r="5" fill="#16131A"></circle><circle cx="168" cy="117" r="5" fill="#16131A"></circle><circle cx="357" cy="128" r="5" fill="#16131A"></circle><circle cx="600" cy="140" r="6" fill="#E8196F"></circle>
+<text x="70" y="34" font-size="12" fill="#16131A">6:55.4</text><text x="178" y="112" font-size="12" fill="#16131A">6:35.8</text><text x="367" y="122" font-size="12" fill="#16131A">≈6:33</text><text x="590" y="130" text-anchor="end" font-size="12" font-weight="700" fill="#16131A">≈6:30</text>
+<text x="60" y="244" font-size="12" fill="#5A5560">Jan 2025</text><text x="168" y="244" text-anchor="middle" font-size="12" fill="#5A5560">May 2025</text><text x="357" y="244" text-anchor="middle" font-size="12" fill="#5A5560">Dec 2025</text><text x="600" y="244" text-anchor="middle" font-size="12" fill="#5A5560">Sep 2026</text>
+</svg>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-size: 30px; font-weight: 600;">Twenty-five seconds in twenty months</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #3A3540;">The next mark is a 2k under 6:15, with test weeks in November and March and the Danish indoor championships in January.</p>
+</div>
+</div>
+</section>
+
+<section id="log" style="padding: 96px 0; border-top: 1px solid #E4DFE3; display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Training log and stats</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">This week on the water</h2>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<span style="font-size: 12px; padding: 8px 12px; border: 1px solid #E4DFE3; border-radius: 999px; background: #FFFFFF;">Erg · Concept2, synced</span>
+<span style="font-size: 12px; padding: 8px 12px; border: 1px solid #E4DFE3; border-radius: 999px; background: #FFFFFF;">Water · NK SpeedCoach, uploaded</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+<div style="background: #16131A; color: #F7F5F2; border-radius: 4px; padding: 24px;"><div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #B9B3BF;">Distance this week</div><div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 600; margin-top: 8px;">[— km]</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFE3; border-radius: 4px; padding: 24px;"><div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560;">Sessions</div><div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 600; margin-top: 8px;">[—]</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFE3; border-radius: 4px; padding: 24px;"><div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560;">Average split</div><div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 600; margin-top: 8px;">[—/500 m]</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFE3; border-radius: 4px; padding: 24px;"><div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560;">Time in UT2</div><div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 600; margin-top: 8px;">[— %]</div></div>
+</div>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #E4DFE3; border-radius: 4px;">
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 720px;">
+<thead><tr style="text-align: left; color: #5A5560; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;"><th style="padding: 14px 20px; font-weight: 500;">Date</th><th style="padding: 14px 12px; font-weight: 500;">Where</th><th style="padding: 14px 12px; font-weight: 500;">Session</th><th style="padding: 14px 12px; font-weight: 500;">Distance</th><th style="padding: 14px 12px; font-weight: 500;">Avg split</th><th style="padding: 14px 20px 14px 12px; font-weight: 500;">Avg HR</th></tr></thead>
+<tbody>
+<sc-for list="{{sessions}}" as="s" hint-placeholder-count="3">
+<tr style="border-top: 1px solid #EFEAEE;"><td style="padding: 16px 20px; color: #5A5560; white-space: nowrap;">{{s.date}}</td><td style="padding: 16px 12px;"><span style="{{s.tagStyle}}">{{s.where}}</span></td><td style="padding: 16px 12px; font-weight: 600;">{{s.name}}</td><td style="padding: 16px 12px;">{{s.distance}}</td><td style="padding: 16px 12px;">{{s.split}}</td><td style="padding: 16px 20px 16px 12px;">{{s.hr}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<p style="margin: 0; font-size: 13px; color: #5A5560;">Headline figures are public; detailed heart-rate files stay private in the admin area.</p>
+</section>
+
+</main>
+
+<footer style="background: #16131A; color: #B9B3BF; padding: 48px clamp(20px, 5vw, 80px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; font-size: 13px;">
+<div style="display: flex; align-items: center; gap: 16px;">
+<svg viewBox="110 110 340 340" width="56" height="56" role="img" aria-label="Samuel Gustav Jensen seal" style="color: #F7F5F2;"><circle cx="280" cy="280" r="170" fill="none" stroke="currentColor" stroke-width="3"></circle><circle cx="280" cy="280" r="120" fill="none" stroke="currentColor" stroke-width="1"></circle><text x="280" y="306" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="92" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text><line x1="250" y1="330" x2="310" y2="330" stroke="#E8196F" stroke-width="4" stroke-linecap="round"></line></svg>
+<span>© 2026 Samuel Gustav Jensen</span>
+</div>
+<div style="display: flex; gap: 20px;"><a href="Contact.dc.html#privacy" style="color: #B9B3BF;">Privacy notice</a><a href="Contact.dc.html" style="color: #B9B3BF;">Contact</a></div>
+</footer>
+
+<button class="burger" type="button" aria-label="Open menu" onClick="{{openMenu}}" style="{{burgerStyle}}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+<div aria-hidden="true" onClick="{{closeMenu}}" style="{{scrimStyle}}"></div>
+<aside aria-label="Menu" style="{{drawerStyle}}">
+<button type="button" aria-label="Close menu" onClick="{{closeMenu}}" style="align-self: flex-end; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
+<nav aria-label="Menu" style="display: flex; flex-direction: column; gap: 14px;">
+<a class="drawerlink" href="Main.dc.html">Home</a>
+<a class="drawerlink" href="About.dc.html">About</a>
+<a class="drawerlink" href="Engineering.dc.html">Engineering</a>
+<a class="drawerlink" href="Rowing.dc.html" style="color: #E8196F;">Rowing</a>
+<a class="sublink" href="#racing" style="padding-left: 4px;">Racing · Personal bests · Training log</a>
+<a class="drawerlink" href="Golf.dc.html">Golf</a>
+<a class="drawerlink" href="Gallery.dc.html">Gallery</a>
+<a class="drawerlink" href="CV.dc.html">CV</a>
+<a class="drawerlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div style="margin-top: auto; display: flex; gap: 14px; font-size: 13px; letter-spacing: 0.1em; color: #F7F5F2;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #B9B3BF;">DA</span><span style="color: #B9B3BF;">FR</span></div>
+</aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { down: false, open: false };
+    this.lastY = 0;
+    this.onWinScroll = () => {
+      const y = window.scrollY || 0;
+      const d = y - this.lastY;
+      this.lastY = y;
+      const down = y > 120 && d > 4 ? true : (d < -4 || y <= 120 ? false : this.state.down);
+      if (down !== this.state.down) this.setState({ down });
+    };
+  }
+  componentDidMount() { window.addEventListener('scroll', this.onWinScroll, { passive: true }); }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onWinScroll); }
+  renderVals() {
+    const down = this.state.down, open = this.state.open;
+    const barStyle = 'position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px clamp(20px, 5vw, 80px); color: #16131A; background: rgba(247,245,242,0.96); border-bottom: 1px solid #E4DFE3; transition: transform .35s ease;' + (down ? ' transform: translateY(-110%);' : '');
+    const burgerStyle = 'position: fixed; top: 16px; right: clamp(16px, 4vw, 48px); z-index: 6; width: 52px; height: 52px; border-radius: 50%; border: 0; background: #E8196F; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity .3s ease, transform .3s ease;' + (down ? ' opacity: 1;' : ' opacity: 0; pointer-events: none; transform: scale(0.8);');
+    const drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; z-index: 8; width: min(420px, 100%); box-sizing: border-box; padding: 24px 40px 40px; background: #16131A; border-left: 3px solid #E8196F; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; transition: transform .45s cubic-bezier(.7,0,.2,1);' + (open ? '' : ' transform: translateX(105%);');
+    const scrimStyle = 'position: fixed; inset: 0; z-index: 7; background: rgba(22,19,26,0.45); transition: opacity .35s ease;' + (open ? ' opacity: 1;' : ' opacity: 0; pointer-events: none;');
+    const tag = (water) => 'font-size: 12px; padding: 4px 10px; border-radius: 999px; ' + (water ? 'background: #FDE7F0; color: #9A0D48;' : 'background: #EFEAEE; color: #3A3540;');
+    return {
+      barStyle, burgerStyle, drawerStyle, scrimStyle,
+      openMenu: () => this.setState({ open: true }),
+      closeMenu: () => this.setState({ open: false }),
+      upcoming: [
+        { date: '31 Oct', name: 'Haraldsted Sø Scullerrace', detail: '2026 · single scull (1x)' },
+        { date: 'Jan', name: 'Danish Indoor Championships', detail: '2027 · 2,000 m ergometer · [exact date]' }
+      ],
+      results: [
+        { date: 'Summer 2026', name: 'European Universities Rowing Championship, Zagreb', boat: '1x', result: '[Placing]' },
+        { date: '24 Jan 2026', name: 'Danish Indoor Championships', boat: 'Erg 2k', result: '[Time]' },
+        { date: 'Oct 2025', name: 'Danish Championships (DM)', boat: '8+', result: '[Placing]' }
+      ],
+      bests: [
+        { label: '2,000 m', value: '6:30', when: 'September 2026 · [confirm exact time]' },
+        { label: '6,000 m', value: '21:38.7', when: 'May 2025' },
+        { label: '1,000 m', value: '3:15.5', when: '1:37.7/500 m' },
+        { label: '1 minute', value: '375 m', when: 'Maximum distance' },
+        { label: '100 m', value: '15.5 s', when: 'Sprint' }
+      ],
+      sessions: [
+        { date: '[Date]', where: 'Erg', tagStyle: tag(false), name: '5 × 7:00 / 5:00 rest', distance: '9,546 m', split: '1:49.9', hr: '174 bpm' },
+        { date: '[Date]', where: 'Erg', tagStyle: tag(false), name: '4 × 2,000 m · last rep 6:58 at 24 spm', distance: '8,000 m', split: '[—]', hr: '[—]' },
+        { date: '[Date]', where: 'Water', tagStyle: tag(true), name: '[Single · synced from NK SpeedCoach]', distance: '[—]', split: '[—]', hr: '[—]' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

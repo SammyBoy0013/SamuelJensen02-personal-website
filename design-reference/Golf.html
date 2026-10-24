@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Samuel Jensen — Golf</title>
+<!-- Design reference only: exported from the design canvas. Layout, spacing and colours are a guide; docs/01-specification.md and docs/02-design-system.md take precedence. -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F5F2;color:#16131A;font-family:'Archivo',system-ui,sans-serif}
+a{color:#16131A}a:hover{color:#C2105A}
+.navlink{color:inherit;text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;border-bottom:2px solid transparent;transition:border-color .2s}
+.navlink:hover{color:inherit;border-bottom-color:#E8196F}
+.navlink.on{border-bottom-color:#E8196F}
+.tab{color:#16131A;text-decoration:none;font-size:14px;padding:14px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:#16131A;border-bottom-color:#E8196F}
+.drawerlink{color:#F7F5F2;text-decoration:none;font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.15}
+.drawerlink:hover{color:#E8196F}
+.sublink{color:#B9B3BF;text-decoration:none;font-size:13px}
+.sublink:hover{color:#F7F5F2}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page{animation:enter .5s cubic-bezier(.2,.7,.2,1) both}
+@media (max-width:900px){.navlinks{display:none!important}.burger{opacity:1!important;pointer-events:auto!important;transform:none!important}.cols{grid-template-columns:minmax(0,1fr)!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="page" style="min-height: 100vh; background: #F7F5F2;">
+
+<header style="{{barStyle}}">
+<a href="Main.dc.html" aria-label="Home" style="color: inherit; display: flex;"><svg viewBox="0 0 120 48" width="78" height="32" aria-hidden="true"><text x="60" y="39" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="40" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text></svg></a>
+<nav class="navlinks" aria-label="Main" style="display: flex; gap: 28px;">
+<a class="navlink" href="Main.dc.html">Home</a>
+<a class="navlink" href="About.dc.html">About</a>
+<a class="navlink" href="Engineering.dc.html">Engineering</a>
+<a class="navlink" href="Rowing.dc.html">Rowing</a>
+<a class="navlink on" href="Golf.dc.html" aria-current="page">Golf</a>
+<a class="navlink" href="Gallery.dc.html">Gallery</a>
+<a class="navlink" href="CV.dc.html">CV</a>
+<a class="navlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div class="navlinks" style="display: flex; gap: 10px; font-size: 12px; letter-spacing: 0.1em;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #5A5560;">DA</span><span style="color: #5A5560;">FR</span></div>
+</header>
+
+<section class="cols" aria-label="Golf" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 88vh; padding-top: 61px; box-sizing: border-box;">
+<div style="display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: clamp(32px, 6vw, 96px);">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Golf</div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(56px, 7vw, 112px); line-height: 0.9;">Under par, by habit</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: #3A3540; max-width: 480px;">I grew up playing golf and swimming, kept golf when I stopped swimming at fourteen, and trained in the elite golf programme at Culford School. I set out to turn professional; these days golf runs alongside rowing, and it is still where I go to clear my head.</p>
+<div style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 8px;">
+<div><div style="font-family: 'Bodoni Moda', serif; font-size: 48px; font-weight: 600;">+1.0</div><div style="font-size: 13px; color: #5A5560;">Handicap · July 2025 · [update]</div></div>
+<div><div style="font-family: 'Bodoni Moda', serif; font-size: 48px; font-weight: 600;">+2.3</div><div style="font-size: 13px; color: #5A5560;">Best handicap</div></div>
+</div>
+</div>
+<div style="position: relative; min-height: 520px; background: #16131A;">
+<img src="../public/media/golf-portrait.jpg" alt="Samuel on the course holding up a golf ball and one finger" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%;">
+</div>
+</section>
+
+<nav aria-label="Golf sections" style="position: sticky; top: 0; z-index: 3; background: #F7F5F2; border-top: 1px solid #E4DFE3; border-bottom: 1px solid #E4DFE3; padding: 0 clamp(20px, 5vw, 80px); display: flex; gap: 32px; overflow-x: auto;">
+<a class="tab" href="#story">The hole-out</a>
+<a class="tab" href="#results">Results</a>
+<a class="tab" href="#stats">Statistics</a>
+</nav>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px);">
+
+<section id="story" class="cols" style="display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); padding: 96px 0; align-items: center;">
+<figure style="margin: 0; border-radius: 4px; overflow: hidden; aspect-ratio: 9 / 16; max-height: 620px; background: #16131A;">
+<video src="../public/media/golf-hole-out.mp4" autoplay="" muted="" loop="" playsinline="" aria-label="Lifting the ball out of the hole on the green" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">The hole-out</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">[The story behind the ball]</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: #3A3540;">[Course, hole, club and date — two or three sentences on the moment in the photo and the clip.]</p>
+</div>
+</section>
+
+<section id="results" style="padding: 96px 0; border-top: 1px solid #E4DFE3; display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Results</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">Tournaments</h2>
+</div>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px;">
+<thead><tr style="text-align: left; color: #5A5560; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;"><th style="padding: 10px 12px 10px 0; font-weight: 500;">Date</th><th style="padding: 10px 12px; font-weight: 500;">Tournament</th><th style="padding: 10px 12px; font-weight: 500;">Score</th><th style="padding: 10px 0 10px 12px; font-weight: 500; text-align: right;">Position</th></tr></thead>
+<tbody>
+<sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+<tr style="border-top: 1px solid #E4DFE3;"><td style="padding: 16px 12px 16px 0; color: #5A5560;">{{r.date}}</td><td style="padding: 16px 12px; font-weight: 600;">{{r.name}}</td><td style="padding: 16px 12px;">{{r.score}}</td><td style="padding: 16px 0 16px 12px; text-align: right; color: #C2105A; font-weight: 600;">{{r.pos}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="stats" style="padding: 96px 0; border-top: 1px solid #E4DFE3; display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #C2105A;">Statistics</div>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(36px, 4vw, 56px); line-height: 1.02;">Where the shots come from</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: #E4DFE3; border: 1px solid #E4DFE3;">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+<div style="background: #FFFFFF; padding: 28px 24px; display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5560;">{{s.label}}</div>
+<div style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 600; line-height: 1;">{{s.value}}</div>
+</div>
+</sc-for>
+</div>
+<div class="cols" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<div style="border-top: 2px solid #E8196F; padding-top: 16px;"><h3 style="margin: 0 0 8px; font-size: 17px;">Long game</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A3540;">Consistency from 9-iron to driver, especially the long irons.</p></div>
+<div style="border-top: 2px solid #E8196F; padding-top: 16px;"><h3 style="margin: 0 0 8px; font-size: 17px;">Pitching</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A3540;">Precision from 30 to 130 yards.</p></div>
+<div style="border-top: 2px solid #E8196F; padding-top: 16px;"><h3 style="margin: 0 0 8px; font-size: 17px;">Putting</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A3540;">Holing more from 3 to 25 feet; the short game is the strength.</p></div>
+</div>
+</section>
+
+</main>
+
+<footer style="background: #16131A; color: #B9B3BF; padding: 48px clamp(20px, 5vw, 80px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; font-size: 13px;">
+<div style="display: flex; align-items: center; gap: 16px;">
+<svg viewBox="110 110 340 340" width="56" height="56" role="img" aria-label="Samuel Gustav Jensen seal" style="color: #F7F5F2;"><circle cx="280" cy="280" r="170" fill="none" stroke="currentColor" stroke-width="3"></circle><circle cx="280" cy="280" r="120" fill="none" stroke="currentColor" stroke-width="1"></circle><text x="280" y="306" text-anchor="middle" font-family="'Bodoni Moda', serif" font-size="92" font-weight="700" fill="currentColor">S<tspan fill="#E8196F">G</tspan>J</text><line x1="250" y1="330" x2="310" y2="330" stroke="#E8196F" stroke-width="4" stroke-linecap="round"></line></svg>
+<span>© 2026 Samuel Gustav Jensen</span>
+</div>
+<div style="display: flex; gap: 20px;"><a href="Contact.dc.html#privacy" style="color: #B9B3BF;">Privacy notice</a><a href="Contact.dc.html" style="color: #B9B3BF;">Contact</a></div>
+</footer>
+
+<button class="burger" type="button" aria-label="Open menu" onClick="{{openMenu}}" style="{{burgerStyle}}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+<div aria-hidden="true" onClick="{{closeMenu}}" style="{{scrimStyle}}"></div>
+<aside aria-label="Menu" style="{{drawerStyle}}">
+<button type="button" aria-label="Close menu" onClick="{{closeMenu}}" style="align-self: flex-end; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A4550; background: transparent; color: #F7F5F2; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
+<nav aria-label="Menu" style="display: flex; flex-direction: column; gap: 14px;">
+<a class="drawerlink" href="Main.dc.html">Home</a>
+<a class="drawerlink" href="About.dc.html">About</a>
+<a class="drawerlink" href="Engineering.dc.html">Engineering</a>
+<a class="drawerlink" href="Rowing.dc.html">Rowing</a>
+<a class="drawerlink" href="Golf.dc.html" style="color: #E8196F;">Golf</a>
+<a class="sublink" href="#stats" style="padding-left: 4px;">Results · Statistics</a>
+<a class="drawerlink" href="Gallery.dc.html">Gallery</a>
+<a class="drawerlink" href="CV.dc.html">CV</a>
+<a class="drawerlink" href="Contact.dc.html">Contact</a>
+</nav>
+<div style="margin-top: auto; display: flex; gap: 14px; font-size: 13px; letter-spacing: 0.1em; color: #F7F5F2;"><span style="border-bottom: 2px solid #E8196F;">EN</span><span style="color: #B9B3BF;">DA</span><span style="color: #B9B3BF;">FR</span></div>
+</aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { down: false, open: false };
+    this.lastY = 0;
+    this.onWinScroll = () => {
+      const y = window.scrollY || 0;
+      const d = y - this.lastY;
+      this.lastY = y;
+      const down = y > 120 && d > 4 ? true : (d < -4 || y <= 120 ? false : this.state.down);
+      if (down !== this.state.down) this.setState({ down });
+    };
+  }
+  componentDidMount() { window.addEventListener('scroll', this.onWinScroll, { passive: true }); }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onWinScroll); }
+  renderVals() {
+    const down = this.state.down, open = this.state.open;
+    const barStyle = 'position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px clamp(20px, 5vw, 80px); color: #16131A; background: rgba(247,245,242,0.96); border-bottom: 1px solid #E4DFE3; transition: transform .35s ease;' + (down ? ' transform: translateY(-110%);' : '');
+    const burgerStyle = 'position: fixed; top: 16px; right: clamp(16px, 4vw, 48px); z-index: 6; width: 52px; height: 52px; border-radius: 50%; border: 0; background: #E8196F; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity .3s ease, transform .3s ease;' + (down ? ' opacity: 1;' : ' opacity: 0; pointer-events: none; transform: scale(0.8);');
+    const drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; z-index: 8; width: min(420px, 100%); box-sizing: border-box; padding: 24px 40px 40px; background: #16131A; border-left: 3px solid #E8196F; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; transition: transform .45s cubic-bezier(.7,0,.2,1);' + (open ? '' : ' transform: translateX(105%);');
+    const scrimStyle = 'position: fixed; inset: 0; z-index: 7; background: rgba(22,19,26,0.45); transition: opacity .35s ease;' + (open ? ' opacity: 1;' : ' opacity: 0; pointer-events: none;');
+    return {
+      barStyle, burgerStyle, drawerStyle, scrimStyle,
+      openMenu: () => this.setState({ open: true }),
+      closeMenu: () => this.setState({ open: false }),
+      results: [
+        { date: '[Date]', name: '[Tournament]', score: '[Score]', pos: '[Position]' },
+        { date: '[Date]', name: '[Tournament]', score: '[Score]', pos: '[Position]' },
+        { date: '[Date]', name: '[Tournament]', score: '[Score]', pos: '[Position]' }
+      ],
+      stats: [
+        { label: 'Handicap', value: '+1.0' },
+        { label: 'Fairways hit', value: '[— %]' },
+        { label: 'Greens in regulation', value: '[— %]' },
+        { label: 'Putts per round', value: '[—]' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "siteName": "Samuel Jensen",
+    "home": "Samuel Jensen: engineer, rower and golfer. MSc student at SDU, racing the single for Odense Roklub.",
+    "about": "From Belgium to Culford to Odense: the story, values and interests of Samuel Gustav Jensen.",
+    "rowing": "Personal bests, goals and training log of Odense Roklub single sculler Samuel Jensen.",
+    "racing": "Race results and upcoming regattas for Samuel Jensen, Odense Roklub.",
+    "golf": "Plus-handicap golfer Samuel Jensen: results, statistics, what's in the bag and two holes in one.",
+    "engineering": "Product development and innovation at SDU: Samuel Jensen's education, projects and skills.",
+    "cv": "The CV of Samuel Jensen, MSc engineering student and competitive rower. Download as a PDF.",
+    "contact": "Email Samuel Jensen about sponsorship, a master's thesis partnership or collaboration."
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "main": "Main",
+    "home": "Samuel Jensen, home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "language": "Language",
+    "sectionsOf": "{page} sections"
+  },
+  "languages": {
+    "en": "English",
+    "da": "Dansk",
+    "fr": "Français"
+  },
+  "fallback": {
+    "da": "This page is shown in English for now. The Danish version is on its way.",
+    "fr": "This page is shown in English for now. The French version is on its way.",
+    "dismiss": "Dismiss"
+  },
+  "hero": {
+    "name": "Samuel Jensen",
+    "tagline": "Engineer. Rower. Golfer.",
+    "imageAlt": "Samuel sculling the yellow single Balder on calm water"
+  },
+  "placeholder": {
+    "label": "Placeholder",
+    "text": "Content for this section arrives in phase 2."
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "sections": {
+        "hero": "Hero",
+        "rowing": "Rowing",
+        "golf": "Golf",
+        "about": "About",
+        "engineering": "Engineering",
+        "contact": "Contact"
+      }
+    },
+    "rowing": {
+      "title": "Rowing",
+      "sections": {
+        "introduction": "Introduction",
+        "goals": "Goals",
+        "personal-bests": "Personal bests",
+        "training-log": "Training log",
+        "racing": "Racing",
+        "dashboard": "Training dashboard"
+      }
+    },
+    "racing": {
+      "title": "Racing",
+      "sections": {
+        "results": "Results",
+        "race-stories": "Race stories",
+        "calendar": "Calendar"
+      }
+    },
+    "rowingDashboard": {
+      "title": "Training dashboard",
+      "sections": {}
+    },
+    "golf": {
+      "title": "Golf",
+      "sections": {
+        "introduction": "Introduction",
+        "at-a-glance": "At a glance",
+        "results": "Results",
+        "statistics": "Statistics",
+        "in-the-bag": "In the bag",
+        "holes-in-one": "Two holes in one",
+        "dashboard": "Golf dashboard"
+      }
+    },
+    "golfDashboard": {
+      "title": "Golf dashboard",
+      "sections": {}
+    },
+    "about": {
+      "title": "About",
+      "sections": {
+        "introduction": "Introduction",
+        "my-story": "My story",
+        "timeline": "Timeline",
+        "what-i-stand-for": "What I stand for",
+        "away-from-sport": "Away from sport",
+        "training-philosophy": "Training philosophy"
+      }
+    },
+    "trainingPhilosophy": {
+      "title": "Training philosophy",
+      "sections": {}
+    },
+    "engineering": {
+      "title": "Engineering",
+      "sections": {
+        "introduction": "Introduction",
+        "education": "Education",
+        "bachelor-project": "Bachelor project",
+        "skills": "Skills and tools",
+        "future-work": "What I'd love to work on"
+      }
+    },
+    "gallery": {
+      "title": "Gallery",
+      "sections": {
+        "rowing": "Rowing",
+        "golf": "Golf",
+        "life": "Life"
+      }
+    },
+    "cv": {
+      "title": "CV",
+      "sections": {
+        "profile": "Profile",
+        "education": "Education",
+        "positions": "Positions of responsibility",
+        "work": "Work experience",
+        "sport": "Sport",
+        "skills": "Skills"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "sections": {
+        "email": "Email me",
+        "collaborate": "Collaborate",
+        "copy-address": "Copy address"
+      }
+    },
+    "privacy": {
+      "title": "Privacy",
+      "sections": {}
+    }
+  },
+  "comingSoon": "Coming soon",
+  "footer": {
+    "line": "Samuel Gustav Jensen · Odense, Denmark · © 2026",
+    "privacy": "Privacy",
+    "social": "Social media",
+    "backToTop": "Back to top",
+    "sealLabel": "Samuel Gustav Jensen seal"
+  },
+  "notFound": {
+    "title": "Wrong lane",
+    "headline": "Wrong lane.",
+    "text": "This page doesn't exist, or it has moved. Let's get you back on course.",
+    "button": "Back to lane one"
+  }
+}

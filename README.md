@@ -24,3 +24,16 @@ Personal website of Samuel Gustav Jensen. Built with Next.js, Neon Postgres and 
 | `public/media/` | Web-optimised photos and videos |
 | `public/og/` | Share image |
 | `design-reference/` | First-draft page layouts (open in a browser) |
+
+## Local development
+
+1. Install Node.js 20.9 or newer, then run `npm install`.
+2. Copy `.env.example` to `.env.local` (phase 1 needs no values).
+3. `npm run dev` and open http://localhost:3000.
+
+| Task | Command |
+|---|---|
+| Lint and types | `npm run lint` and `npm run typecheck` |
+| Production build | `npm run build`, then `npm run start` |
+| Rebuild inline seal and monogram after changing `public/brand/*.svg` | `npm run brand` |
+| Rebuild favicon PNGs and `favicon.ico` from `public/brand/favicon.svg` | `npm run icons` |

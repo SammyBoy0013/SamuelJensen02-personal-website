@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/* Design tokens from docs/02-design-system.md */
+:root {
+  --pink: #e8196f;
+  --pink-text: #c2105a;
+  --pink-soft: #ffd3e4;
+  --ink: #16131a;
+  --paper: #f7f5f2;
+  --white: #ffffff;
+  --line: #e4dfe3;
+  --grey-1: #3a3540;
+  --grey-2: #5a5560;
+  --grey-3: #b9b3bf;
+  --grey-4: #4a4550;
+
+  --gutter: clamp(20px, 5vw, 80px);
+  --content-max: 1200px;
+  --ease-page: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-drawer: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@theme inline {
+  --color-pink: var(--pink);
+  --color-pink-text: var(--pink-text);
+  --color-pink-soft: var(--pink-soft);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-white: var(--white);
+  --color-line: var(--line);
+  --color-grey-1: var(--grey-1);
+  --color-grey-2: var(--grey-2);
+  --color-grey-3: var(--grey-3);
+  --color-grey-4: var(--grey-4);
+
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-serif: var(--font-bodoni), Georgia, serif;
+
+  --breakpoint-nav: 900px;
+  --ease-page: var(--ease-page);
+  --ease-drawer: var(--ease-drawer);
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--grey-1);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 80px;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: calc(var(--content-max) + 2 * var(--gutter));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pink-text);
+  }
+
+  .page-title {
+    font-size: clamp(52px, 6vw, 96px);
+    line-height: 0.92;
+  }
+
+  .section-title {
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.02;
+  }
+
+  .nav-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Text link with the 2 px pink underline ("Enter rowing →") */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+    border-bottom: 2px solid var(--pink);
+    transition: gap 0.2s ease;
+  }
+  .text-link:hover {
+    gap: 16px;
+  }
+}
+
+/* First-visit loader: the seal ring draws itself, then the overlay fades.
+   An inline script adds [data-seen] for the rest of the session. */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--white);
+  animation: loader-out 0.35s ease 1.2s forwards;
+}
+.loader svg {
+  width: min(200px, 45vw);
+  height: auto;
+}
+.loader .seal-ring {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ring-draw 1s var(--ease-page) forwards;
+}
+.loader svg > :not(g[stroke]) {
+  opacity: 0;
+  animation: seal-in 0.4s ease 0.7s forwards;
+}
+html[data-seen] .loader {
+  display: none;
+}
+@keyframes ring-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes seal-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes loader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .loader {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

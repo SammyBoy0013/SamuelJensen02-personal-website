@@ -175,6 +175,8 @@ html.home-snap footer {
 .slide {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  /* Override the 80 px [id] scroll margin, or each slide stops short. */
+  scroll-margin-top: 0;
 }
 
 /* First-visit loader: the seal ring draws itself, then the overlay fades.

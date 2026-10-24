@@ -147,14 +147,16 @@
     "role": "Role",
     "educationCaption": "Education",
     "positionsCaption": "Positions of responsibility",
-    "workCaption": "Work experience"
+    "workCaption": "Work experience",
+    "download": "Download the CV as a PDF"
   },
   "contact": {
     "emailMe": "Email me",
     "collaborate": "Collaborate",
     "copyAddress": "Copy address",
     "copied": "Copied",
-    "copyFailed": "Copy failed: the address is {email}"
+    "copyFailed": "Copy failed: the address is {email}",
+    "collaborateSubject": "Collaboration enquiry"
   },
   "pages": {
     "home": {
@@ -228,7 +230,8 @@
         "education": "Education",
         "bachelor-project": "Bachelor project",
         "skills": "Skills and tools",
-        "future-work": "What I'd love to work on"
+        "future-work": "What I'd love to work on",
+        "reports": "Reports and publications"
       }
     },
     "gallery": {
@@ -255,7 +258,8 @@
       "sections": {
         "email": "Email me",
         "collaborate": "Collaborate",
-        "copy-address": "Copy address"
+        "copy-address": "Copy address",
+        "sponsors": "Sponsors"
       }
     },
     "privacy": {

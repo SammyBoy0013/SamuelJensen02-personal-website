@@ -1,15 +1,24 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { getPage } from "@/lib/site";
+import { getPage, visibleSections, type Features } from "@/lib/site";
 
 /**
  * Sticky section tabs under the page header (design system "Layout"),
  * linking to the page's sections and sub-pages from lib/site.ts.
  */
-export function SectionTabs({ pageKey, hide = [] }: { pageKey: string; hide?: string[] }) {
+export function SectionTabs({
+  pageKey,
+  hide = [],
+  features,
+}: {
+  pageKey: string;
+  hide?: string[];
+  /** Feature toggles from settings, for sections that can be switched off. */
+  features?: Features;
+}) {
   const t = useTranslations();
   const page = getPage(pageKey);
-  const sections = page.sections.filter((s) => !hide.includes(s.id));
+  const sections = visibleSections(page, features).filter((s) => !hide.includes(s.id));
   if (sections.length === 0) return null;
 
   return (

@@ -3,17 +3,18 @@
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { mainPages } from "@/lib/site";
+import { mainPages, visibleSections, type Features } from "@/lib/site";
 import { LanguageLinks } from "./LanguageLinks";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   currentPage: string | undefined;
+  features: Features;
 };
 
 /** Slide-in menu from the right (specification 5.1). Esc and the scrim close it. */
-export function Drawer({ open, onClose, currentPage }: Props) {
+export function Drawer({ open, onClose, currentPage, features }: Props) {
   const t = useTranslations();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -97,9 +98,9 @@ export function Drawer({ open, onClose, currentPage }: Props) {
                 >
                   {t(`pages.${page.key}.title`)}
                 </Link>
-                {page.sections.length > 0 && (
+                {visibleSections(page, features).length > 0 && (
                   <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 pl-1">
-                    {page.sections.map((s) => (
+                    {visibleSections(page, features).map((s) => (
                       <li key={s.id}>
                         <Link
                           href={s.href ?? `${page.href}#${s.id}`}

@@ -53,7 +53,7 @@ export const media = {
     "rowing",
   ),
   golfPortrait: photo("golf-portrait", golfPortrait, "Samuel on the course holding up a golf ball and one finger", "golf"),
-  culfordDinner: photo("culford-dinner", culfordDinner, "Samuel in a suit at the Culford School old boys' dinner", "life"),
+  culfordDinner: photo("culford-dinner", culfordDinner, "Samuel in a suit at the Fifth Dinner Club reunion at Culford", "life"),
   teamDock: photo("zagreb-team-dock", zagrebTeamDock, "The Odense team on the jetty in Zagreb, the course behind them", "rowing"),
   carryingTheSingle: photo(
     "carrying-the-single",

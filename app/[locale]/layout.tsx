@@ -10,7 +10,8 @@ import { LoaderGate } from "@/components/shell/LoaderGate";
 import "../globals.css";
 
 // Runs before first paint: the loader shows once per browser session.
-const loaderScript = `try{var s=sessionStorage;if(s.getItem("sj-seen"))document.documentElement.setAttribute("data-seen","");else{s.setItem("sj-seen","1");window.__sjFirstVisit=true}}catch(e){document.documentElement.setAttribute("data-seen","")}`;
+// It also marks that JavaScript runs, so fade-ups may start hidden.
+const loaderScript = `document.documentElement.classList.add("js");try{var s=sessionStorage;if(s.getItem("sj-seen"))document.documentElement.setAttribute("data-seen","");else{s.setItem("sj-seen","1");window.__sjFirstVisit=true}}catch(e){document.documentElement.setAttribute("data-seen","")}`;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

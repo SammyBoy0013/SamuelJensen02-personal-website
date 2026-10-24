@@ -36,7 +36,7 @@ function Rowing() {
 
   return (
     <>
-      <PageHeader eyebrow={r("eyebrow")} title={t("pages.rowing.title")} photo={media.crewLift} focus="50% 30%" />
+      <PageHeader eyebrow={r("eyebrow")} title={t("pages.rowing.title")} photo={media.hero} focus="55% 30%" />
       <SectionTabs pageKey="rowing" />
 
       <Section id="introduction" title={section("introduction")}>

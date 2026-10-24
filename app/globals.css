@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Hover styles apply whenever a pointer hovers, including on touchscreen
+   laptops. Tailwind's default only applies them when the primary input can
+   hover, which hid the nav hover on some Windows laptops. */
+@custom-variant hover (&:hover);
+
 /* Design tokens from docs/02-design-system.md */
 :root {
   --pink: #e8196f;
@@ -62,6 +67,16 @@
     font-family: var(--font-serif);
     font-weight: 600;
     color: var(--ink);
+  }
+
+  /* Bodoni Moda's automatic optical size makes large text hairline-thin.
+     A fixed small optical size keeps the thin strokes readable at every size. */
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 14;
   }
 
   :focus-visible {

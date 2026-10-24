@@ -6,7 +6,17 @@ export type Section = {
   id: string;
   /** Set for sub-pages listed in a dropdown; otherwise the link is `#id`. */
   href?: string;
+  /** Shown only while this feature toggle is on in admin settings. */
+  flag?: FeatureFlag;
 };
+
+export type FeatureFlag = "sponsors" | "reportsAndPublications";
+export type Features = Partial<Record<FeatureFlag, boolean>>;
+
+/** A page's sections without those whose feature toggle is off. */
+export function visibleSections(page: Page, features: Features = {}): Section[] {
+  return page.sections.filter((s) => !s.flag || features[s.flag]);
+}
 
 export type Page = {
   key: string;
@@ -68,13 +78,13 @@ export const mainPages: Page[] = [
   {
     key: "engineering",
     href: "/engineering",
-    // "Reports and publications" is hidden behind a feature flag (phase 3).
     sections: [
       { id: "introduction" },
       { id: "education" },
       { id: "bachelor-project" },
       { id: "skills" },
       { id: "future-work" },
+      { id: "reports", flag: "reportsAndPublications" },
     ],
   },
   {
@@ -97,7 +107,12 @@ export const mainPages: Page[] = [
   {
     key: "contact",
     href: "/contact",
-    sections: [{ id: "email" }, { id: "collaborate" }, { id: "copy-address" }],
+    sections: [
+      { id: "email" },
+      { id: "collaborate" },
+      { id: "copy-address" },
+      { id: "sponsors", flag: "sponsors" },
+    ],
   },
 ];
 
@@ -114,6 +129,7 @@ export const subPages: Page[] = [
   { key: "privacy", href: "/privacy", sections: [] },
 ];
 
+/** Default social links; the live ones come from admin settings. */
 export const socialLinks = [
   { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/samuel-gustav-jensen-824288295/" },
   { key: "strava", label: "Strava", href: "https://www.strava.com/athletes/51417053" },

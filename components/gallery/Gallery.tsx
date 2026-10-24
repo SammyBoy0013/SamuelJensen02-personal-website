@@ -1,9 +1,33 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useTranslations } from "next-intl";
-import type { Category, Photo } from "@/content/media";
+import type { Category } from "@/content/media";
+
+/**
+ * A photo in the grid: either a file in public/media (static import, with a
+ * blurred preview) or an upload from Vercel Blob (with its dominant colour).
+ */
+export type GalleryPhoto = {
+  id: string;
+  src: StaticImageData | string;
+  width?: number;
+  height?: number;
+  dominantColour?: string;
+  alt: string;
+  category: Category;
+  credit: string | null;
+};
+
+type Photo = GalleryPhoto;
+
+/** Image props for either kind of photo. */
+function imageProps(photo: Photo) {
+  return typeof photo.src === "string"
+    ? { src: photo.src, style: { backgroundColor: photo.dominantColour } }
+    : { src: photo.src, placeholder: "blur" as const };
+}
 
 const categories: Category[] = ["rowing", "golf", "life"];
 type Filter = Category | "all";
@@ -68,9 +92,10 @@ export function Gallery({ photos }: { photos: Photo[] }) {
               className="group block w-full cursor-zoom-in overflow-hidden rounded bg-ink"
             >
               <Image
-                src={photo.src}
+                {...imageProps(photo)}
+                width={photo.width}
+                height={photo.height}
                 alt={photo.alt}
-                placeholder="blur"
                 sizes="(min-width: 900px) 400px, (min-width: 640px) 50vw, 100vw"
                 className="block h-auto w-full transition-[transform,opacity] duration-500 group-hover:scale-[1.03] group-hover:opacity-90"
               />
@@ -163,10 +188,9 @@ function Lightbox({
         <div className="relative min-h-0 w-full flex-1" style={{ height: "min(78svh, 1000px)" }}>
           <Image
             key={photo.id}
-            src={photo.src}
+            {...imageProps(photo)}
             alt={photo.alt}
             fill
-            placeholder="blur"
             sizes="100vw"
             className="object-contain"
           />

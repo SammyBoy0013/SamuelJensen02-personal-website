@@ -6,20 +6,19 @@ import { HomeSnap } from "@/components/home/HomeSnap";
 import { Parallax } from "@/components/home/Parallax";
 import { Reveal } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
-import { hero, slides } from "@/content/home";
 import { media, type Photo } from "@/content/media";
-import { settings } from "@/content/site";
-import { socialLinks } from "@/lib/site";
+import { getBlocks, getSettings, type PublicSettings } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <Home />;
+  const [blocks, settings] = await Promise.all([getBlocks("home", locale), getSettings()]);
+  return <Home blocks={blocks} settings={settings} />;
 }
 
 // Person structured data (specification 5.12). Only facts already public on the site.
-function personJsonLd() {
+function personJsonLd(settings: PublicSettings) {
   const url = getSiteUrl();
   return {
     "@context": "https://schema.org",
@@ -35,12 +34,13 @@ function personJsonLd() {
     memberOf: { "@type": "SportsOrganization", name: "Odense Roklub" },
     alumniOf: { "@type": "School", name: "Culford School" },
     knowsLanguage: ["en", "da", "fr"],
-    sameAs: socialLinks.map((s) => s.href),
+    sameAs: Object.values(settings.social).filter(Boolean),
   };
 }
 
-function Home() {
+function Home({ blocks, settings }: { blocks: Record<string, string>; settings: PublicSettings }) {
   const t = useTranslations("home");
+  const pages = useTranslations("pages");
   const enter = (page: string) => t("enter", { page: page.toLowerCase() });
 
   return (
@@ -48,7 +48,7 @@ function Home() {
       <HomeSnap />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(settings)).replace(/</g, "\\u003c") }}
       />
 
       {/* 1. Hero: name and photo only; the ribbon stays hidden until scrolling up. */}
@@ -59,9 +59,9 @@ function Home() {
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,19,26,0.5)_0%,rgba(22,19,26,0)_26%,rgba(22,19,26,0)_50%,rgba(22,19,26,0.66)_100%)]"
         />
         <Reveal className="absolute inset-x-[var(--gutter)] bottom-[clamp(36px,8vh,88px)] flex flex-col gap-3.5">
-          <p className="eyebrow text-pink-soft">{hero.tagline}</p>
+          <p className="eyebrow text-pink-soft">{blocks["hero-tagline"]}</p>
           <h1 id="hero-title" className="text-[clamp(64px,11vw,176px)] leading-[0.88] tracking-[-0.02em] text-white">
-            {hero.title}
+            {blocks["hero-title"]}
           </h1>
         </Reveal>
       </section>
@@ -73,13 +73,13 @@ function Home() {
           aria-hidden
           className="absolute inset-0 bg-[linear-gradient(0deg,rgba(22,19,26,0.8)_0%,rgba(22,19,26,0.15)_60%),linear-gradient(90deg,rgba(22,19,26,0.55)_0%,rgba(22,19,26,0)_60%)]"
         />
-        <SlideText number="01" id="rowing" href="/rowing" title={slides.rowing.title} tagline={slides.rowing.tagline} enter={enter(slides.rowing.title)} dark className="absolute inset-x-[var(--gutter)] bottom-[clamp(40px,10vh,110px)]" />
+        <SlideText number="01" id="rowing" href="/rowing" title={pages("rowing.title")} tagline={blocks["rowing-tagline"]} enter={enter(pages("rowing.title"))} dark className="absolute inset-x-[var(--gutter)] bottom-[clamp(40px,10vh,110px)]" />
       </section>
 
       {/* 3. Golf: text beside the portrait. */}
       <section id="golf" aria-labelledby="golf-title" className="slide flex h-svh min-h-[560px] flex-col-reverse overflow-hidden bg-paper nav:flex-row">
         <div className="flex flex-1 items-center px-[var(--gutter)] py-10 nav:px-[clamp(32px,6vw,96px)]">
-          <SlideText number="02" id="golf" href="/golf" title={slides.golf.title} tagline={slides.golf.tagline} enter={enter(slides.golf.title)} />
+          <SlideText number="02" id="golf" href="/golf" title={pages("golf.title")} tagline={blocks["golf-tagline"]} enter={enter(pages("golf.title"))} />
         </div>
         <div className="relative min-h-0 flex-1 bg-ink">
           <SlidePhoto photo={media.golfPortrait} focus="50% 25%" sizes="(min-width: 900px) 50vw, 100vw" />
@@ -90,20 +90,20 @@ function Home() {
       <section id="about" aria-labelledby="about-title" className="slide relative h-svh min-h-[560px] overflow-hidden bg-ink">
         <SlidePhoto photo={media.teamDock} focus="50% 45%" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(0deg,rgba(22,19,26,0.8)_0%,rgba(22,19,26,0.1)_60%)]" />
-        <SlideText number="03" id="about" href="/about" title={slides.about.title} tagline={slides.about.tagline} enter={enter(slides.about.title)} dark className="absolute inset-x-[var(--gutter)] bottom-[clamp(40px,10vh,110px)]" />
+        <SlideText number="03" id="about" href="/about" title={pages("about.title")} tagline={blocks["about-tagline"]} enter={enter(pages("about.title"))} dark className="absolute inset-x-[var(--gutter)] bottom-[clamp(40px,10vh,110px)]" />
       </section>
 
       {/* 5. Engineering: the pink grid stands in for project photos until they are approved. */}
       <section id="engineering" aria-labelledby="engineering-title" className="slide flex h-svh min-h-[560px] flex-col overflow-hidden bg-paper nav:flex-row">
         <div aria-hidden className="pink-grid min-h-0 flex-1" />
         <div className="flex flex-1 items-center px-[var(--gutter)] py-10 nav:px-[clamp(32px,6vw,96px)]">
-          <SlideText number="04" id="engineering" href="/engineering" title={slides.engineering.title} tagline={slides.engineering.tagline} enter={enter(slides.engineering.title)} />
+          <SlideText number="04" id="engineering" href="/engineering" title={pages("engineering.title")} tagline={blocks["engineering-tagline"]} enter={enter(pages("engineering.title"))} />
         </div>
       </section>
 
       {/* 6. Contact */}
       <section id="contact" aria-labelledby="contact-title" className="slide flex h-svh min-h-[560px] items-center overflow-hidden bg-ink">
-        <SlideText number="05" id="contact" href="/contact" title={slides.contact.title} tagline={slides.contact.tagline} enter={enter(slides.contact.title)} dark className="wrap" />
+        <SlideText number="05" id="contact" href="/contact" title={pages("contact.title")} tagline={blocks["contact-tagline"]} enter={enter(pages("contact.title"))} dark className="wrap" />
       </section>
     </>
   );

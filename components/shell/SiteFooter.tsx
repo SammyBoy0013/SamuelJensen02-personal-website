@@ -6,8 +6,8 @@ import { BackToTop } from "./BackToTop";
 import { LanguageLinks } from "./LanguageLinks";
 import { SocialIcon } from "./SocialIcon";
 
-/** Footer from specification 5.11. */
-export function SiteFooter() {
+/** Footer from specification 5.11. Social links come from admin settings, in the fixed order. */
+export function SiteFooter({ social }: { social: Record<string, string> }) {
   const t = useTranslations("footer");
   return (
     <footer className="bg-ink text-grey-3">
@@ -24,10 +24,10 @@ export function SiteFooter() {
 
         <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
           <ul aria-label={t("social")} className="flex gap-2">
-            {socialLinks.map((s) => (
+            {socialLinks.filter((s) => social[s.key]).map((s) => (
               <li key={s.key}>
                 <a
-                  href={s.href}
+                  href={social[s.key]}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}

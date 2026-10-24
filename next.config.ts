@@ -41,6 +41,17 @@ const nextConfig: NextConfig = {
   // cannot prerender. Pages are still static via generateStaticParams and are
   // revalidated on demand with revalidatePath (phase 3).
   cacheComponents: false,
+  experimental: {
+    // Photo uploads: the browser re-encodes them first (stripping EXIF), so
+    // they arrive well under Vercel's 4.5 MB request limit.
+    serverActions: { bodySizeLimit: "4mb" },
+  },
+  // The CV PDF reads its fonts from disk at run time.
+  serverExternalPackages: ["@react-pdf/renderer"],
+  outputFileTracingIncludes: { "/api/cv-pdf": ["./lib/pdf/fonts/**"] },
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+  },
   turbopack: {
     rules: {
       "*.css": {

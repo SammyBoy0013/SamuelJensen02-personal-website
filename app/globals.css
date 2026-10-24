@@ -141,6 +141,72 @@
     gap: 16px;
   }
 
+  /* Admin forms: clean fields in the site's style. */
+  .field-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+  }
+  .field {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--white);
+    padding: 10px 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .field:focus {
+    outline: 2px solid var(--pink);
+    outline-offset: 0;
+    border-color: var(--pink);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--pink-text);
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    background: var(--ink);
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .button:hover {
+    background: var(--pink);
+  }
+  .button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+  .button-quiet {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    padding: 7px 14px;
+    font-size: 13px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .button-quiet:hover {
+    border-color: var(--pink);
+    color: var(--pink-text);
+  }
+
   /* Pink grid on ink: stands in for project photos until they are approved. */
   .pink-grid {
     background-color: var(--ink);

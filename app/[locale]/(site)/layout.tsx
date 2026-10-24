@@ -2,11 +2,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { FallbackNotice } from "@/components/shell/FallbackNotice";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 import { SiteHeader } from "@/components/shell/SiteHeader";
+import { getSettings } from "@/lib/data";
 
 export default async function SiteLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("nav");
+  const [t, settings] = await Promise.all([getTranslations("nav"), getSettings()]);
   return (
     <>
       <a
@@ -15,11 +16,11 @@ export default async function SiteLayout({ children, params }: LayoutProps<"/[lo
       >
         {t("skipToContent")}
       </a>
-      <SiteHeader />
+      <SiteHeader features={settings.features} />
       <main id="main" tabIndex={-1} className="outline-none">
         {children}
       </main>
-      <SiteFooter />
+      <SiteFooter social={settings.social} />
       <FallbackNotice />
     </>
   );

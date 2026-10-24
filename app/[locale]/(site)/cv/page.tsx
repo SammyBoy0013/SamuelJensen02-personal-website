@@ -3,34 +3,79 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { pageMetadata, PlaceholderNote } from "@/components/PlaceholderPage";
 import { Fact } from "@/components/content/Fact";
-import { Md, Prose } from "@/components/content/Md";
+import { Markdown } from "@/components/content/Md";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section, Split, SubTitle } from "@/components/layout/Section";
 import { SectionTabs } from "@/components/layout/SectionTabs";
 import { Table } from "@/components/ui/Table";
-import { education, interests, languages, positions, profile, skills, sport, work } from "@/content/cv";
 import { media } from "@/content/media";
-import { settings } from "@/content/site";
 import type { Checked } from "@/content/types";
-import { getAge } from "@/lib/age";
+import { fact, getBlocks, getList, getSettings, loc } from "@/lib/data";
 
 export const generateMetadata = pageMetadata("cv");
 
 // Rebuild daily so the age stays right after a birthday.
 export const revalidate = 86400;
 
+type YearsRow = { id: number; years: Checked; text: string | null };
+
 export default async function Page({ params }: PageProps<"/[locale]/cv">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <Cv age={getAge()} />;
+  const [blocks, settings, education, positions, work, languages] = await Promise.all([
+    getBlocks("cv", locale),
+    getSettings(),
+    getList("education", "cv"),
+    getList("positions"),
+    getList("work"),
+    getList("languages"),
+  ]);
+  const years = (rows: typeof positions): YearsRow[] =>
+    rows.map((row) => ({ id: row.id, years: fact(row, "years", loc(row.years, locale)), text: loc(row.text, locale) }));
+
+  return (
+    <Cv
+      locale={locale}
+      blocks={blocks}
+      age={settings.age}
+      email={settings.email}
+      education={years(education)}
+      positions={years(positions)}
+      work={years(work)}
+      // "English, Danish and French (native); German, Swedish and Norwegian (basic)."
+      languages={
+        languages.length
+          ? `${languages.map((l) => `${loc(l.names, locale)} (${loc(l.level, locale)})`).join("; ")}.`
+          : ""
+      }
+    />
+  );
 }
 
 // No phone number and no address on the web CV (specification section 4).
-function Cv({ age }: { age: number | null }) {
+function Cv({
+  locale,
+  blocks,
+  age,
+  email,
+  education,
+  positions,
+  work,
+  languages,
+}: {
+  locale: string;
+  blocks: Record<string, string>;
+  age: number | null;
+  email: string;
+  education: YearsRow[];
+  positions: YearsRow[];
+  work: YearsRow[];
+  languages: string;
+}) {
   const t = useTranslations();
   const c = useTranslations("cv");
   const section = (id: string) => t(`pages.cv.sections.${id}`);
-  const yearsTable = (caption: string, header: string, rows: { years: Checked; text: string }[]) => (
+  const yearsTable = (caption: string, header: string, rows: YearsRow[]) => (
     <Table
       caption={caption}
       headers={[c("years"), header]}
@@ -52,13 +97,17 @@ function Cv({ age }: { age: number | null }) {
                 {age !== null ? c("age", { age }) : null}
                 {age !== null && " · "}
                 {c("based")} ·{" "}
-                <a href={`mailto:${settings.email}`} className="underline decoration-pink decoration-2 underline-offset-4 hover:text-pink-text">
-                  {settings.email}
+                <a href={`mailto:${email}`} className="underline decoration-pink decoration-2 underline-offset-4 hover:text-pink-text">
+                  {email}
                 </a>
               </p>
             </div>
             {age === null && <PlaceholderNote text={t("placeholder.age")} />}
-            <Prose paragraphs={[profile]} />
+            <Markdown text={blocks.profile} />
+            {/* The PDF adds the phone number; the web page never shows it. */}
+            <a href={`/api/cv-pdf?locale=${locale}`} download className="text-link self-start text-ink">
+              {c("download")} <span aria-hidden>↓</span>
+            </a>
           </div>
           <Image
             src={media.culfordDinner.src}
@@ -83,28 +132,19 @@ function Cv({ age }: { age: number | null }) {
       </Section>
 
       <Section id="sport" title={section("sport")}>
-        <ul className="flex max-w-[68ch] flex-col gap-3 text-[18px] leading-[1.7]">
-          {sport.map((line) => (
-            <li key={line} className="relative pl-6">
-              <span aria-hidden className="absolute top-[0.8em] left-0 h-0.5 w-3 bg-pink" />
-              {line}
-            </li>
-          ))}
-        </ul>
+        <Markdown text={blocks.sport} />
       </Section>
 
       <Section id="skills" title={section("skills")}>
         <div className="grid grid-cols-1 gap-8 nav:grid-cols-3">
           {[
-            { label: section("skills"), text: skills },
+            { label: section("skills"), text: blocks.skills },
             { label: c("languages"), text: languages },
-            { label: c("interests"), text: interests },
+            { label: c("interests"), text: blocks.interests },
           ].map((item) => (
             <div key={item.label} className="flex flex-col gap-3">
               <SubTitle>{item.label}</SubTitle>
-              <p className="text-[17px] leading-[1.7]">
-                <Md text={item.text.charAt(0).toUpperCase() + item.text.slice(1)} />
-              </p>
+              <Markdown text={item.text} small />
             </div>
           ))}
         </div>

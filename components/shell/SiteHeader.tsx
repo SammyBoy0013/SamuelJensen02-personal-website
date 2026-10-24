@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { mainPages } from "@/lib/site";
+import { mainPages, visibleSections, type Features } from "@/lib/site";
 import { Monogram } from "@/components/brand/Monogram";
 import { Drawer } from "./Drawer";
 import { LanguageLinks } from "./LanguageLinks";
@@ -29,7 +29,7 @@ function currentPageKey(pathname: string): string | undefined {
   return mainPages.find((p) => p.href !== "/" && pathname.startsWith(p.href))?.key;
 }
 
-export function SiteHeader() {
+export function SiteHeader({ features }: { features: Features }) {
   const t = useTranslations();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -118,12 +118,12 @@ export function SiteHeader() {
                   >
                     {t(`pages.${page.key}.title`)}
                   </Link>
-                  {page.sections.length > 0 && (
+                  {visibleSections(page, features).length > 0 && (
                     <ul
                       aria-label={t("nav.sectionsOf", { page: t(`pages.${page.key}.title`) })}
                       className="invisible absolute top-full left-0 min-w-56 bg-pink p-3 opacity-0 transition-opacity duration-200 group-has-focus-visible:visible group-has-focus-visible:opacity-100 group-hover:visible group-hover:opacity-100"
                     >
-                      {page.sections.map((s) => (
+                      {visibleSections(page, features).map((s) => (
                         <li key={s.id}>
                           <Link
                             href={s.href ?? `${page.href}#${s.id}`}
@@ -160,7 +160,7 @@ export function SiteHeader() {
         </svg>
       </button>
 
-      <Drawer open={open} onClose={close} currentPage={currentPage} />
+      <Drawer open={open} onClose={close} currentPage={currentPage} features={features} />
     </>
   );
 }

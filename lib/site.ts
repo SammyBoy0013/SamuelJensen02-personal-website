@@ -19,8 +19,8 @@ export const mainPages: Page[] = [
   {
     key: "home",
     href: "/",
+    // The hero is the top of the page, so it is not listed as a section.
     sections: [
-      { id: "hero" },
       { id: "rowing" },
       { id: "golf" },
       { id: "about" },

@@ -13,7 +13,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
 function Home() {
   const t = useTranslations();
-  const slides = getPage("home").sections.filter((s) => s.id !== "hero");
+  const slides = getPage("home").sections;
 
   return (
     <>

@@ -30,20 +30,136 @@
     "fr": "This page is shown in English for now. The French version is on its way.",
     "dismiss": "Dismiss"
   },
-  "hero": {
-    "name": "Samuel Jensen",
-    "tagline": "Engineer. Rower. Golfer.",
-    "imageAlt": "Samuel sculling the yellow single Balder on calm water"
-  },
   "placeholder": {
     "label": "Placeholder",
-    "text": "Content for this section arrives in phase 2."
+    "text": "Text to follow.",
+    "trainingLog": "The training summary and session list appear here once training uploads are built.",
+    "trainingPhilosophy": "Samuel's training philosophy is still to be written.",
+    "projectPhoto": "Project photo: added once approved under the NDA",
+    "age": "Age appears once the date of birth is set."
+  },
+  "pending": {
+    "check": "check",
+    "toConfirm": "To confirm",
+    "toFollow": "To follow"
+  },
+  "video": {
+    "play": "Play video",
+    "pause": "Pause video",
+    "mute": "Mute video",
+    "unmute": "Unmute video"
+  },
+  "home": {
+    "enter": "Read more"
+  },
+  "rowing": {
+    "eyebrow": "Odense Roklub",
+    "goalsCaption": "Rowing goals",
+    "when": "When",
+    "goal": "Goal",
+    "pbCaption": "Ergometer personal bests",
+    "pbHeading": "Ergometer",
+    "distance": "Distance",
+    "time": "Time",
+    "date": "Date",
+    "onTheWater": "On the water",
+    "onTheWaterLabel": "2,000 m, single",
+    "vitalStatistics": "Vital statistics",
+    "height": "Height",
+    "wingspan": "Wingspan",
+    "weight": "Weight class",
+    "openWeight": "Open",
+    "videoLabel": "Carrying the single up from the water in Zagreb",
+    "thisWeek": "This week",
+    "thisMonth": "This month",
+    "thisSeason": "This season",
+    "sessions": "Sessions",
+    "hours": "Hours",
+    "kilometres": "Kilometres"
+  },
+  "racing": {
+    "eyebrow": "Rowing",
+    "resultsCaption": "Race results, newest first",
+    "date": "Date",
+    "regatta": "Regatta",
+    "event": "Event",
+    "crew": "Crew",
+    "result": "Result",
+    "allResults": "All results",
+    "fewerResults": "Latest ten only",
+    "calendarCaption": "Confirmed upcoming races",
+    "place": "Place",
+    "noRaces": "No confirmed races at the moment."
+  },
+  "golf": {
+    "eyebrow": "Handicap {handicap}",
+    "glanceCaption": "Golf at a glance",
+    "resultsCaption": "Golf results",
+    "year": "Year",
+    "event": "Event",
+    "result": "Result",
+    "bagCaption": "Clubs in the bag",
+    "club": "Club",
+    "makeModel": "Make and model",
+    "videoLabel": "Lifting the ball out of the hole on the green",
+    "stats": {
+      "handicap": "Handicap",
+      "lowestHandicap": "Lowest handicap",
+      "lowestRound": "Lowest round",
+      "sgPutting": "Strokes gained putting",
+      "dispersion": "Shot dispersion"
+    }
+  },
+  "about": {
+    "timelineCaption": "Milestones, oldest first",
+    "glanceHeading": "At a glance",
+    "glanceCaption": "About Samuel at a glance"
+  },
+  "engineering": {
+    "eyebrow": "MSc, SDU",
+    "educationCaption": "Education",
+    "years": "Years",
+    "qualification": "Qualification",
+    "skillsCaption": "Skills and tools",
+    "area": "Area",
+    "skills": "Skills"
+  },
+  "gallery": {
+    "filter": "Filter photos",
+    "all": "All",
+    "open": "Open photo: {alt}",
+    "viewer": "Photo viewer",
+    "close": "Close photo",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "credit": "Photo: {credit}",
+    "creditToFollow": "Credit to follow",
+    "count": "Photo {index} of {total}"
+  },
+  "cv": {
+    "name": "Samuel Gustav Jensen",
+    "age": "Age {age}",
+    "based": "Odense, Denmark",
+    "languages": "Languages",
+    "interests": "Interests",
+    "years": "Years",
+    "qualification": "Qualification",
+    "role": "Role",
+    "educationCaption": "Education",
+    "positionsCaption": "Positions of responsibility",
+    "workCaption": "Work experience"
+  },
+  "contact": {
+    "emailMe": "Email me",
+    "collaborate": "Collaborate",
+    "copyAddress": "Copy address",
+    "copied": "Copied",
+    "copyFailed": "Copy failed: the address is {email}"
   },
   "pages": {
     "home": {
       "title": "Home",
       "sections": {
-        "hero": "Hero",
         "rowing": "Rowing",
         "golf": "Golf",
         "about": "About",

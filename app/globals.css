@@ -140,6 +140,43 @@
   .text-link:hover {
     gap: 16px;
   }
+
+  /* Pink grid on ink: stands in for project photos until they are approved. */
+  .pink-grid {
+    background-color: var(--ink);
+    background-image:
+      linear-gradient(rgba(232, 25, 111, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 25, 111, 0.18) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+/* Fade-up once on scroll (components/ui/Reveal.tsx). Only hidden once
+   JavaScript has run, so the content never depends on it. */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s var(--ease-page),
+    transform 0.9s var(--ease-page);
+}
+html.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Home: full-screen slides with scroll snap (components/home/HomeSnap.tsx). */
+html.home-snap {
+  scroll-snap-type: y mandatory;
+}
+html.home-snap footer {
+  scroll-snap-align: end;
+}
+.slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* Override the 80 px [id] scroll margin, or each slide stops short. */
+  scroll-margin-top: 0;
 }
 
 /* First-visit loader: the seal ring draws itself, then the overlay fades.
@@ -193,6 +230,10 @@ html[data-seen] .loader {
   }
   .loader {
     display: none;
+  }
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
   }
   *,
   *::before,

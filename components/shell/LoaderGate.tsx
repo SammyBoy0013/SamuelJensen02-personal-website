@@ -15,6 +15,7 @@ declare global {
  */
 export function LoaderGate() {
   useLayoutEffect(() => {
+    document.documentElement.classList.add("js");
     if (window.__sjFirstVisit) return;
     try {
       if (sessionStorage.getItem("sj-seen")) {

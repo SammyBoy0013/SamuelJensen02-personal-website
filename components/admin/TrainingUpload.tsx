@@ -6,6 +6,7 @@ import type { ActionResult } from "@/lib/admin/actions";
 import { importTraining, previewTraining } from "@/lib/admin/training-actions";
 import { formatClock, formatKilometres, formatSessionDate } from "@/lib/training/format";
 import { ACCEPTED, MAX_IMPORT_BYTES, parseTrainingFile } from "@/lib/training/parse";
+import { sessionSchema } from "@/lib/training/schema";
 import type { ParsedSession, PreviewRow } from "@/lib/training/types";
 import { FieldShell, Status } from "./fields";
 
@@ -55,8 +56,18 @@ export function TrainingUpload() {
         }
         try {
           const result = await parseTrainingFile(file.name, await file.arrayBuffer());
-          summaries.push({ name: file.name, format: result.format, count: result.sessions.length, warnings: result.warnings });
-          sessions.push(...result.sessions);
+          // Check each session as the server will, so one odd row is skipped and named
+          // here instead of the whole upload being refused.
+          const warnings = [...result.warnings];
+          const valid = result.sessions.filter((s) => {
+            const check = sessionSchema.safeParse(s);
+            if (check.success) return true;
+            const field = check.error.issues[0]?.path.join(".") || "a value";
+            warnings.push(`${formatSessionDate(s.startTime)} "${s.title ?? s.sport}": ${field} out of range, skipped.`);
+            return false;
+          });
+          summaries.push({ name: file.name, format: result.format, count: valid.length, warnings });
+          sessions.push(...valid);
         } catch {
           summaries.push({ name: file.name, format: "Unreadable", count: 0, warnings: ["This file could not be read."] });
         }

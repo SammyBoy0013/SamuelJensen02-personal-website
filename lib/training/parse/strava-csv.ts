@@ -11,7 +11,10 @@ const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "
 
 /** "Oct 20, 2025, 6:01:41 AM" (UTC, as Strava writes it) or ISO 8601. */
 export function stravaDate(text: string): string | null {
-  const m = /^([A-Za-z]{3})[a-z]* (\d{1,2}), (\d{4}),? (\d{1,2}):(\d{2}):(\d{2}) ?([AP]M)$/i.exec(text.trim());
+  // Newer exports put a narrow no-break space (U+202F) before AM/PM.
+  const m = /^([A-Za-z]{3})[a-z]*\.?\s(\d{1,2}),\s(\d{4}),?\s(\d{1,2}):(\d{2}):(\d{2})\s?([AP]M)$/i.exec(
+    text.replace(/[\u00a0\u202f]/g, " ").trim(),
+  );
   if (m) {
     const month = MONTHS.indexOf(m[1].toLowerCase());
     let hour = Number(m[4]) % 12;

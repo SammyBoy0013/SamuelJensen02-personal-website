@@ -7,6 +7,9 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
 import { parseTrainingFile } from "../lib/training/parse";
+import { stravaDate } from "../lib/training/parse/strava-csv";
+import { session } from "../lib/training/parse/util";
+import { sessionSchema } from "../lib/training/schema";
 import { autoHideReason, isSameSession, sportFrom, splitPer500 } from "../lib/training/rules";
 import type { ParsedSession } from "../lib/training/types";
 
@@ -177,5 +180,35 @@ describe("Rules", () => {
     assert.equal(sportFrom("Weight Training"), "strength");
     assert.equal(splitPer500("row", 400, 2000), 100);
     assert.equal(splitPer500("run", 400, 2000), null);
+  });
+});
+
+describe("Real-world export quirks", () => {
+  it("reads Strava dates with a narrow no-break space before PM", () => {
+    assert.equal(stravaDate("Oct 24, 2026, 6:12:34\u202fPM"), "2026-10-24T18:12:34.000Z");
+    assert.equal(stravaDate("Oct 24, 2026, 6:12:34 AM"), "2026-10-24T06:12:34.000Z");
+  });
+
+  it("empties out-of-range optional figures instead of failing the upload", () => {
+    const s = session({
+      source: "strava", externalId: "1", startTime: "2026-10-24T06:00:00.000Z", sport: "row",
+      title: "x".repeat(300), durationS: 3600.4, distanceM: 20.6, avgRate: 400,
+      avgHr: 144.6, maxHr: 999, avgWatts: 212.4,
+    });
+    assert.equal(s.avgSplitSPer500, null); // 21 m in an hour would be a split of over 23 hours
+    assert.equal(s.avgRate, null);
+    assert.equal(s.avgHr, 145);
+    assert.equal(s.maxHr, null);
+    assert.equal(s.avgWatts, 212);
+    assert.equal(s.title?.length, 200);
+    assert.ok(sessionSchema.safeParse(s).success);
+  });
+
+  it("still refuses a session longer than a week", () => {
+    const s = session({
+      source: "strava", externalId: "2", startTime: "2026-10-24T06:00:00.000Z", sport: "ride",
+      title: null, durationS: 8 * 24 * 3600, distanceM: null, avgRate: null, avgHr: null, maxHr: null, avgWatts: null,
+    });
+    assert.equal(sessionSchema.safeParse(s).success, false);
   });
 });

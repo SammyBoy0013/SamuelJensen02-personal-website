@@ -50,7 +50,18 @@ export function zonedToUtc(year: number, month: number, day: number, hour: numbe
   return new Date(guess - (asLocal - guess));
 }
 
-/** Builds a session, filling in the split and rounding the figures. */
+const round = (value: number | null | undefined) => (value === null || value === undefined ? null : Math.round(value));
+
+/** A figure inside [min, max], or null when it is missing or out of range. */
+function within(value: number | null | undefined, min: number, max: number): number | null {
+  return value === null || value === undefined || !Number.isFinite(value) || value < min || value > max ? null : value;
+}
+
+/**
+ * Builds a session, filling in the split and rounding the figures. Optional
+ * figures outside a sensible range (a split of hours from a few metres of GPS,
+ * a heart-rate glitch) become empty rather than failing the whole upload.
+ */
 export function session(fields: Omit<ParsedSession, "avgSplitSPer500"> & { avgSplitSPer500?: number | null }): ParsedSession {
   const durationS = Math.round(fields.durationS);
   const distanceM = fields.distanceM === null ? null : Math.round(fields.distanceM);
@@ -59,14 +70,14 @@ export function session(fields: Omit<ParsedSession, "avgSplitSPer500"> & { avgSp
     externalId: fields.externalId,
     startTime: fields.startTime,
     sport: fields.sport,
-    title: fields.title?.trim() || null,
+    title: fields.title?.trim().slice(0, 200) || null,
     durationS,
-    distanceM: distanceM && distanceM > 0 ? distanceM : null,
-    avgSplitSPer500: fields.avgSplitSPer500 ?? splitPer500(fields.sport as Sport, durationS, distanceM),
-    avgRate: fields.avgRate === null ? null : Math.round(fields.avgRate * 10) / 10,
-    avgHr: fields.avgHr,
-    maxHr: fields.maxHr,
-    avgWatts: fields.avgWatts,
+    distanceM: within(distanceM, 1, 1_000_000),
+    avgSplitSPer500: within(fields.avgSplitSPer500 ?? splitPer500(fields.sport as Sport, durationS, distanceM), 0.001, 3600),
+    avgRate: fields.avgRate === null ? null : within(Math.round(fields.avgRate * 10) / 10, 0, 300),
+    avgHr: within(round(fields.avgHr), 20, 250),
+    maxHr: within(round(fields.maxHr), 20, 250),
+    avgWatts: within(round(fields.avgWatts), 0, 3000),
   };
 }
 

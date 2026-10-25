@@ -151,7 +151,7 @@ function Golf({
           <Markdown text={blocks["holes-in-one"]} />
           <Video
             src="/media/golf-hole-out.mp4"
-            poster="/media/posters/golf-hole-out.jpg"
+            poster="/media/posters/golf-hole-out.webp"
             label={g("videoLabel")}
             className="aspect-[3/4] w-full nav:max-h-[640px]"
           />

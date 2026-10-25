@@ -1,21 +1,7 @@
-import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/layout/PageHeader";
 
-const descriptions = ["home", "about", "rowing", "racing", "golf", "engineering", "cv", "contact"];
-
-/** Metadata for a page: "Page — Samuel Jensen" plus its description, where one is approved. */
-export function pageMetadata(pageKey: string) {
-  return async ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> => {
-    const { locale } = await params;
-    const t = await getTranslations({ locale });
-    return {
-      title: t(`pages.${pageKey}.title`),
-      ...(descriptions.includes(pageKey) && { description: t(`meta.${pageKey}`) }),
-    };
-  };
-}
+export { pageMetadata } from "@/lib/metadata";
 
 /** A clearly marked stand-in for content that does not exist yet. */
 export function PlaceholderNote({ text }: { text?: string }) {

@@ -22,11 +22,13 @@ export type GalleryPhoto = {
 
 type Photo = GalleryPhoto;
 
-/** Image props for either kind of photo. */
-function imageProps(photo: Photo) {
-  return typeof photo.src === "string"
-    ? { src: photo.src, style: { backgroundColor: photo.dominantColour } }
-    : { src: photo.src, placeholder: "blur" as const };
+/**
+ * Image props for either kind of photo. In the grid, a Blob photo shows its
+ * dominant colour until it loads (images below the fold load lazily).
+ */
+function imageProps(photo: Photo, placeholder = true) {
+  if (typeof photo.src !== "string") return { src: photo.src, placeholder: placeholder ? ("blur" as const) : undefined };
+  return { src: photo.src, style: placeholder ? { backgroundColor: photo.dominantColour } : undefined };
 }
 
 const categories: Category[] = ["rowing", "golf", "life"];
@@ -73,7 +75,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
             onClick={() => pick(f)}
             className={`nav-label cursor-pointer rounded-full border px-4 py-2 transition-colors ${
               filter === f
-                ? "border-pink bg-pink text-white"
+                ? "border-pink-text bg-pink-text text-white"
                 : "border-line bg-white text-ink hover:border-pink hover:text-pink-text"
             }`}
           >
@@ -96,7 +98,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
                 width={photo.width}
                 height={photo.height}
                 alt={photo.alt}
-                sizes="(min-width: 900px) 400px, (min-width: 640px) 50vw, 100vw"
+                sizes="(min-width: 1360px) 400px, (min-width: 900px) 30vw, 100vw"
                 className="block h-auto w-full transition-[transform,opacity] duration-500 group-hover:scale-[1.03] group-hover:opacity-90"
               />
             </button>
@@ -188,7 +190,7 @@ function Lightbox({
         <div className="relative min-h-0 w-full flex-1" style={{ height: "min(78svh, 1000px)" }}>
           <Image
             key={photo.id}
-            {...imageProps(photo)}
+            {...imageProps(photo, false)}
             alt={photo.alt}
             fill
             sizes="100vw"

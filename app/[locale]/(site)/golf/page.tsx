@@ -150,8 +150,8 @@ function Golf({
         <Split>
           <Markdown text={blocks["holes-in-one"]} />
           <Video
-            // No poster yet: the fragment shows the first frame instead of black.
-            src="/media/golf-hole-out.mp4#t=0.1"
+            src="/media/golf-hole-out.mp4"
+            poster="/media/posters/golf-hole-out.jpg"
             label={g("videoLabel")}
             className="aspect-[3/4] w-full nav:max-h-[640px]"
           />

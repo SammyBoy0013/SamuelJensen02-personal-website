@@ -29,7 +29,6 @@ export function LanguageLinks({ tone, className = "", onNavigate }: Props) {
               locale={l}
               lang={l}
               hrefLang={l}
-              aria-label={t(l)}
               aria-current={current ? "true" : undefined}
               onClick={onNavigate}
               className={[
@@ -44,7 +43,9 @@ export function LanguageLinks({ tone, className = "", onNavigate }: Props) {
                     : "text-grey-3 hover:text-paper",
               ].join(" ")}
             >
+              {/* The name read out starts with the visible code (WCAG 2.5.3). */}
               {l.toUpperCase()}
+              <span className="sr-only"> {t(l)}</span>
             </Link>
           </li>
         );

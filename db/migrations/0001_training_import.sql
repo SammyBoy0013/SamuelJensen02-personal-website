@@ -1,0 +1,2 @@
+ALTER TABLE "training_sessions" ADD COLUMN "imported_at" timestamp with time zone DEFAULT now() NOT NULL;--> statement-breakpoint
+CREATE INDEX "training_sessions_start_time" ON "training_sessions" USING btree ("start_time");

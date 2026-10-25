@@ -33,7 +33,6 @@
   "placeholder": {
     "label": "Placeholder",
     "text": "Text to follow.",
-    "trainingLog": "The training summary and session list appear here once training uploads are built.",
     "trainingPhilosophy": "Samuel's training philosophy is still to be written.",
     "projectPhoto": "Project photo: added once approved under the NDA",
     "age": "Age appears once the date of birth is set."
@@ -75,7 +74,36 @@
     "thisSeason": "This season",
     "sessions": "Sessions",
     "hours": "Hours",
-    "kilometres": "Kilometres"
+    "kilometres": "Kilometres",
+    "training": {
+      "summaryCaption": "Training totals: this week, this month and this season",
+      "period": "Period",
+      "seasonFrom": "The season runs from {date}.",
+      "listHeading": "Sessions",
+      "listCaption": "Training sessions, newest first",
+      "date": "Date",
+      "type": "Type",
+      "duration": "Duration",
+      "distance": "Distance",
+      "split": "Avg split",
+      "rate": "Rate",
+      "heartRate": "Heart rate",
+      "none": "No sessions yet.",
+      "newer": "Newer",
+      "older": "Older",
+      "pageOf": "Page {page} of {pageCount}",
+      "loadFailed": "The sessions could not be loaded. Try again.",
+      "types": {
+        "row": "Row",
+        "erg": "Erg",
+        "strength": "Strength",
+        "run": "Run",
+        "ride": "Ride",
+        "ski": "SkiErg",
+        "swim": "Swim",
+        "other": "Other"
+      }
+    }
   },
   "racing": {
     "eyebrow": "Rowing",

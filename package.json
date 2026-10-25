@@ -12,17 +12,23 @@
     "icons": "node scripts/generate-icons.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:seed": "tsx db/seed.ts"
+    "db:seed": "tsx db/seed.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "test:fixtures": "tsx tests/make-fixtures.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
     "@react-pdf/renderer": "^4.9.0",
     "@vercel/blob": "^2.8.2",
     "drizzle-orm": "^0.45.4",
+    "fast-xml-parser": "^5.11.2",
+    "fflate": "^0.8.3",
+    "fit-file-parser": "^6.2.3",
     "motion": "^14.6.0",
     "next": "16.4.3",
     "next-auth": "^5.0.0-beta.32",
     "next-intl": "^4.14.9",
+    "papaparse": "^5.7.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",
@@ -30,8 +36,10 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@garmin/fitsdk": "^21.218.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
+    "@types/papaparse": "^5.5.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.31.11",

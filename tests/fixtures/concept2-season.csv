@@ -1,0 +1,4 @@
+"Log ID","Date","Description","Work Time (Formatted)","Work Time (Seconds)","Rest Time (Formatted)","Rest Time (Seconds)","Work Distance","Rest Distance","Stroke Rate/Cadence","Stroke Count","Pace","Avg Watts","Cal/Hour","Total Cal","Avg Heart Rate","Drag Factor","Age","Weight","Type","Ranked","Comments","Date Entered"
+70000001,"2025-11-25 07:00:00","6000m","21:38.7",1298.7,"0:00.0",0,6000,0,30,650,"1:48.2",276,"1300","469",165,120,23,"Hwt","RowErg","Yes","","2025-11-25"
+70000002,"2025-10-21 19:30:20","2000m","6:40.0",400.0,"0:00.0",0,2000,0,33,220,"1:40.0",350,"1500","167",176,120,23,"Hwt","RowErg","Yes","","2025-10-21"
+70000003,"2025-11-26 07:00:00","30:00","30:00.0",1800,"0:00.0",0,7520,0,20,600,"1:59.7",204,"1000","500",142,115,23,"Hwt","SkiErg","No","","2025-11-26"

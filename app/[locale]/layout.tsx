@@ -7,6 +7,7 @@ import { archivo, bodoni } from "@/lib/fonts";
 import { getSiteUrl } from "@/lib/site-url";
 import { Seal } from "@/components/brand/Seal";
 import { LoaderGate } from "@/components/shell/LoaderGate";
+import { SameSectionLinks } from "@/components/shell/SameSectionLinks";
 import "../globals.css";
 
 // Runs before first paint: the loader shows once per browser session.
@@ -60,6 +61,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <Seal />
         </div>
         <LoaderGate />
+        <SameSectionLinks />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

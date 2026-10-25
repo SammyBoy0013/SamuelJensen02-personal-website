@@ -22,6 +22,7 @@ export default async function Settings() {
           lowestHandicap: s.lowestHandicap,
           heightCm: s.heightCm === null ? "" : String(s.heightCm),
           wingspanCm: s.wingspanCm === null ? "" : String(s.wingspanCm),
+          seasonStart: s.seasonStart,
           social: s.social,
           features: s.features,
         }}

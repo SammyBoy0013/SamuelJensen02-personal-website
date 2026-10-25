@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { socialLinks } from "@/lib/site";
-import { Seal } from "@/components/brand/Seal";
 import { BackToTop } from "./BackToTop";
 import { LanguageLinks } from "./LanguageLinks";
 import { SocialIcon } from "./SocialIcon";
@@ -13,7 +12,9 @@ export function SiteFooter({ social }: { social: Record<string, string> }) {
     <footer className="bg-ink text-grey-3">
       <div className="wrap flex flex-col gap-10 py-16 nav:flex-row nav:items-end nav:justify-between">
         <div className="flex flex-col gap-6">
-          <Seal className="size-28 text-white" label={t("sealLabel")} />
+          {/* An image rather than inline SVG: cached once instead of repeated in every page. */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- a fixed-size SVG needs no optimisation */}
+          <img src="/brand/seal-white.svg" alt={t("sealLabel")} width={112} height={112} loading="lazy" className="size-28" />
           <p className="text-[13px]">
             {t("line")} ·{" "}
             <Link href="/privacy" className="underline decoration-pink decoration-2 underline-offset-4 hover:text-paper">

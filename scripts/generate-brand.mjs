@@ -5,12 +5,19 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 const read = (name) => readFileSync(`public/brand/${name}.svg`, "utf8");
 
+// The outlines carry up to 15 decimal places; two are invisible at any size
+// the seal is shown, and cut the markup (sent with every page) by about 70 %.
+const round = (markup) => markup.replace(/-?\d+\.\d{3,}/g, (n) => String(Math.round(Number(n) * 100) / 100));
+
 const inner = (svg) =>
-  svg
-    .replace(/^[\s\S]*?<svg[^>]*>/, "")
-    .replace(/<\/svg>\s*$/, "")
-    .replace(/<title>[\s\S]*?<\/title>/, "")
-    .trim();
+  round(
+    svg
+      .replace(/^[\s\S]*?<svg[^>]*>/, "")
+      .replace(/<\/svg>\s*$/, "")
+      .replace(/<title>[\s\S]*?<\/title>/, "")
+      .replace(/\r?\n/g, "")
+      .trim(),
+  );
 
 // Mark the two seal rings so the loader can draw them with stroke-dashoffset.
 const seal = inner(read("seal")).replace(
@@ -26,3 +33,12 @@ writeFileSync(
     `export const monogramMarkup = ${JSON.stringify(monogram)};\n`,
 );
 console.log("Wrote components/brand/markup.ts");
+
+// A white copy of the seal for the footer, loaded as an image (cached once)
+// rather than repeated inline in every page.
+const white = inner(read("seal")).replaceAll("currentColor", "#FFFFFF");
+writeFileSync(
+  "public/brand/seal-white.svg",
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">${white}</svg>\n`,
+);
+console.log("Wrote public/brand/seal-white.svg");

@@ -12,8 +12,16 @@ type Props = {
 
 /** Full-width table with 1 px row borders (design system "Results table"). */
 export function Table({ caption, headers, rows, placing, minWidth = 0 }: Props) {
+  // A table that can scroll sideways is a focusable region, so it can be
+  // scrolled with the keyboard too.
+  const scrolls = minWidth > 0;
   return (
-    <div className="-mx-[var(--gutter)] overflow-x-auto px-[var(--gutter)] nav:mx-0 nav:px-0">
+    <div
+      role={scrolls ? "region" : undefined}
+      aria-label={scrolls ? caption : undefined}
+      tabIndex={scrolls ? 0 : undefined}
+      className="-mx-[var(--gutter)] overflow-x-auto px-[var(--gutter)] nav:mx-0 nav:px-0"
+    >
       <table className="w-full border-collapse text-left text-[15px] leading-[1.5]" style={{ minWidth }}>
         {caption && <caption className="sr-only">{caption}</caption>}
         <thead>

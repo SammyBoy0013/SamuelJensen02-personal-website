@@ -9,6 +9,8 @@
 :root {
   --pink: #e8196f;
   --pink-text: #c2105a;
+  /* Background behind small white text: just deep enough for AA (4.8:1 with white). */
+  --pink-deep: #dc1569;
   --pink-soft: #ffd3e4;
   --ink: #16131a;
   --paper: #f7f5f2;
@@ -28,6 +30,7 @@
 @theme inline {
   --color-pink: var(--pink);
   --color-pink-text: var(--pink-text);
+  --color-pink-deep: var(--pink-deep);
   --color-pink-soft: var(--pink-soft);
   --color-ink: var(--ink);
   --color-paper: var(--paper);
@@ -217,6 +220,17 @@
   }
 }
 
+/* Page-to-page transition: a quick slide and fade (specification 5.2). */
+.page-enter {
+  animation: page-enter 0.5s var(--ease-page) both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+
 /* Fade-up once on scroll (components/ui/Reveal.tsx). Only hidden once
    JavaScript has run, so the content never depends on it. */
 html.js .reveal {
@@ -229,6 +243,17 @@ html.js .reveal {
 html.js .reveal.is-in {
   opacity: 1;
   transform: none;
+}
+
+/* The same fade-up for content on screen at load, run by CSS alone. */
+.rise {
+  animation: rise 0.9s var(--ease-page) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 }
 
 /* Home: full-screen slides with scroll snap (components/home/HomeSnap.tsx). */

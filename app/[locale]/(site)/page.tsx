@@ -9,6 +9,9 @@ import { Link } from "@/i18n/navigation";
 import { media, type Photo } from "@/content/media";
 import { getBlocks, getSettings, type PublicSettings } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
+import { pageMetadata } from "@/lib/metadata";
+
+export const generateMetadata = pageMetadata("home");
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -58,7 +61,7 @@ function Home({ blocks, settings }: { blocks: Record<string, string>; settings: 
           aria-hidden
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,19,26,0.5)_0%,rgba(22,19,26,0)_26%,rgba(22,19,26,0)_50%,rgba(22,19,26,0.66)_100%)]"
         />
-        <Reveal className="absolute inset-x-[var(--gutter)] bottom-[clamp(36px,8vh,88px)] flex flex-col gap-3.5">
+        <Reveal onLoad className="absolute inset-x-[var(--gutter)] bottom-[clamp(36px,8vh,88px)] flex flex-col gap-3.5">
           <p className="eyebrow text-pink-soft">{blocks["hero-tagline"]}</p>
           <h1 id="hero-title" className="text-[clamp(64px,11vw,176px)] leading-[0.88] tracking-[-0.02em] text-white">
             {blocks["hero-title"]}
@@ -126,7 +129,8 @@ function SlidePhoto({
         src={photo.src}
         alt={photo.alt}
         fill
-        priority={priority}
+        loading={priority ? "eager" : undefined}
+        fetchPriority={priority ? "high" : undefined}
         placeholder="blur"
         sizes={sizes}
         className="object-cover"

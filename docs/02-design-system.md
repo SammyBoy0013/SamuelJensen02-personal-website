@@ -10,6 +10,7 @@ House style: **clean and elegant, with bold sporty moments.** Pink is Samuel's C
 |---|---|---|
 | `--pink` | `#E8196F` | Accent: rules, underlines, menu button, hover backgrounds, the G in the monogram |
 | `--pink-text` | `#C2105A` | Pink for small text on paper (passes contrast) |
+| `--pink-deep` | `#DC1569` | Background behind small white text: nav hover, dropdowns, active filter (4.8 : 1) |
 | `--pink-soft` | `#FFD3E4` | Eyebrow text on dark photos |
 | `--ink` | `#16131A` | Main text; dark backgrounds |
 | `--paper` | `#F7F5F2` | Main background; the ribbon (at 96 % opacity) |
@@ -58,7 +59,7 @@ Load both fonts with `next/font/google`, self-hosted, so no requests go to Googl
 | Component | Specification |
 |---|---|
 | Ribbon (header) | Height about 60 px, `--paper` at 96 % opacity, 1 px `--line` bottom border, monogram 78 × 32 px |
-| Nav hover | Pink background, white text, 0.2 s; dropdown panel in pink, white links, 12 px padding |
+| Nav hover | `--pink-deep` background, white text, 0.2 s; dropdown panel in `--pink-deep`, white links, 12 px padding |
 | Menu button | 52 px circle, `--pink`, white 22 px three-line icon, fixed top right (16 px from the top) |
 | Drawer | Width `min(420px, 100%)`, `--ink`, 3 px pink left border, slides in over 0.45 s `cubic-bezier(.7,0,.2,1)`, scrim at 45 % ink |
 | Back-to-top | 52 px pink circle, white arrow, bottom right of the footer |

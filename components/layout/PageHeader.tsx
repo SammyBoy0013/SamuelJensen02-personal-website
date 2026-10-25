@@ -40,7 +40,9 @@ export function PageHeader({ eyebrow, title, titleLang, photo, focus = "50% 40%"
               src={photo.src}
               alt={photo.alt}
               fill={!whole}
-              priority
+              // The header photo is the largest thing on the page: fetch it first.
+              loading="eager"
+              fetchPriority="high"
               placeholder="blur"
               sizes="100vw"
               className={

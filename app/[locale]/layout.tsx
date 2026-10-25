@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { archivo, bodoni } from "@/lib/fonts";
+import { shareImage } from "@/lib/metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import { Seal } from "@/components/brand/Seal";
 import { LoaderGate } from "@/components/shell/LoaderGate";
@@ -21,7 +22,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
-  const shareImage = { url: "/og/share-image.jpg", width: 1200, height: 630, alt: t("siteName") };
+  // Defaults for pages without their own metadata (such as "Wrong lane").
+  const image = { ...shareImage, alt: t("siteName") };
 
   return {
     metadataBase: getSiteUrl(),
@@ -30,10 +32,10 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     openGraph: {
       type: "website",
       siteName: t("siteName"),
-      locale,
-      images: [shareImage],
+      locale: { en: "en_GB", da: "da_DK", fr: "fr_FR" }[locale],
+      images: [image],
     },
-    twitter: { card: "summary_large_image", images: [shareImage.url] },
+    twitter: { card: "summary_large_image", images: [image] },
     icons: {
       icon: [
         { url: "/brand/favicon.svg", type: "image/svg+xml" },
@@ -45,6 +47,17 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 }
 
 export const viewport = { themeColor: "#16131A" };
+
+type Messages = Awaited<ReturnType<typeof getMessages>>;
+
+/**
+ * Only the strings that client components use go to the browser; server
+ * components read the rest directly. This keeps every page's HTML small.
+ */
+function clientMessages(messages: Messages): Messages {
+  const { pages, nav, languages, gallery, video, fallback, rowing } = messages as Record<string, Record<string, unknown>>;
+  return { pages, nav, languages, gallery, video, fallback, rowing: { training: rowing?.training } } as Messages;
+}
 
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
@@ -62,7 +75,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         </div>
         <LoaderGate />
         <SameSectionLinks />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages(await getMessages())}>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

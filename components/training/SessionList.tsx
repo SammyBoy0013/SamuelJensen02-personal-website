@@ -36,6 +36,7 @@ export function SessionList({ initial, locale }: { initial: SessionPage; locale:
     <div className="flex flex-col gap-4" aria-busy={loading}>
       <Table
         caption={t("listCaption")}
+        minWidth={680}
         headers={[t("date"), t("type"), t("duration"), t("distance"), t("split"), t("rate"), t("heartRate")]}
         rows={data.sessions.map((s) => [
           formatSessionDate(s.startTime, locale),

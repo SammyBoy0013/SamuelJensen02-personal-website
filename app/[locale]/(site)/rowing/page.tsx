@@ -11,6 +11,7 @@ import { StatTiles } from "@/components/ui/StatTiles";
 import { Table } from "@/components/ui/Table";
 import { Video } from "@/components/ui/Video";
 import { SessionList } from "@/components/training/SessionList";
+import { TrainingTotals } from "@/components/training/TrainingTotals";
 import { media } from "@/content/media";
 import { fact, getBlocks, getList, getSettings, loc, type PublicSettings } from "@/lib/data";
 import { formatDate, formatDuration } from "@/lib/format";
@@ -93,7 +94,7 @@ function Rowing({
           <Markdown text={blocks.introduction} />
           <Video
             src="/media/carrying-the-single.mp4"
-            poster="/media/carrying-the-single.jpg"
+            poster="/media/posters/carrying-the-single.jpg"
             label={r("videoLabel")}
             className="aspect-[3/4] w-full nav:max-h-[640px]"
           />
@@ -150,24 +151,8 @@ function Rowing({
 
       <Section id="training-log" title={section("training-log")}>
         <Markdown text={blocks["training-log-intro"]} />
-        {/* Summary statistics, so they count up (specification 5.2). */}
         <div className="flex flex-col gap-3">
-          <Table
-            caption={r("training.summaryCaption")}
-            headers={[r("training.period"), r("sessions"), r("hours"), r("kilometres")]}
-            rows={(
-              [
-                ["thisWeek", summary.week],
-                ["thisMonth", summary.month],
-                ["thisSeason", summary.season],
-              ] as const
-            ).map(([period, totals]) => [
-              r(period),
-              <CountUp key="sessions" value={totals.sessions} />,
-              <CountUp key="hours" value={totals.hours} decimals={1} />,
-              <CountUp key="km" value={totals.kilometres} decimals={1} />,
-            ])}
-          />
+          <TrainingTotals summary={summary} />
           <p className="text-[14px] text-grey-2">
             {r("training.seasonFrom", { date: formatDate(summary.seasonStart, locale) ?? summary.seasonStart })}
           </p>

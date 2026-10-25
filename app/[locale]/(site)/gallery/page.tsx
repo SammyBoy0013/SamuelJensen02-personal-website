@@ -13,11 +13,11 @@ export default async function Page({ params }: PageProps<"/[locale]/gallery">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const [blocks, uploads] = await Promise.all([getBlocks("gallery", locale), getGalleryPhotos(locale)]);
-  // Uploads from admin first, then the photos in public/media (phase 5 moves those into Blob too).
-  const photos: GalleryPhoto[] = [
-    ...uploads.map((p) => ({ ...p, id: `upload-${p.id}`, category: p.category as Category })),
-    ...gallery,
-  ];
+  // Every photo comes from Vercel Blob, in the admin order. The files in
+  // public/media are only a fallback for a build without a database.
+  const photos: GalleryPhoto[] = uploads.length
+    ? uploads.map((p) => ({ ...p, id: `photo-${p.id}`, category: p.category as Category }))
+    : gallery;
   return <GalleryPage intro={blocks.introduction} photos={photos} />;
 }
 

@@ -76,8 +76,7 @@
     "hours": "Hours",
     "kilometres": "Kilometres",
     "training": {
-      "summaryCaption": "Training totals: this week, this month and this season",
-      "period": "Period",
+      "summaryCaption": "Training totals",
       "seasonFrom": "The season runs from {date}.",
       "listHeading": "Sessions",
       "listCaption": "Training sessions, newest first",

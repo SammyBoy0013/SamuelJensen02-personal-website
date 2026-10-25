@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { pageMetadata, PlaceholderNote } from "@/components/PlaceholderPage";
+import { pageMetadata } from "@/components/PlaceholderPage";
 import { Fact } from "@/components/content/Fact";
 import { Markdown, Md } from "@/components/content/Md";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -10,25 +10,35 @@ import { CountUp } from "@/components/ui/CountUp";
 import { StatTiles } from "@/components/ui/StatTiles";
 import { Table } from "@/components/ui/Table";
 import { Video } from "@/components/ui/Video";
+import { SessionList } from "@/components/training/SessionList";
 import { media } from "@/content/media";
 import { fact, getBlocks, getList, getSettings, loc, type PublicSettings } from "@/lib/data";
 import { formatDate, formatDuration } from "@/lib/format";
+import { getSessions, getTrainingSummary, type SessionPage, type TrainingSummary } from "@/lib/training/summary";
 
 export const generateMetadata = pageMetadata("rowing");
+
+// Rebuilt hourly so "this week" and "this month" roll over without an upload.
+export const revalidate = 3600;
 
 export default async function Page({ params }: PageProps<"/[locale]/rowing">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [blocks, goals, personalBests, settings] = await Promise.all([
+  const [blocks, goals, personalBests, settings, summary, sessions] = await Promise.all([
     getBlocks("rowing", locale),
     getList("goals"),
     getList("personalBests"),
     getSettings(),
+    getTrainingSummary(),
+    getSessions(),
   ]);
   return (
     <Rowing
+      locale={locale}
       blocks={blocks}
       settings={settings}
+      summary={summary}
+      sessions={sessions}
       goals={goals.map((g) => [loc(g.whenLabel, locale), loc(g.text, locale)])}
       personalBests={personalBests.map((pb) => ({
         id: pb.id,
@@ -42,13 +52,19 @@ export default async function Page({ params }: PageProps<"/[locale]/rowing">) {
 }
 
 function Rowing({
+  locale,
   blocks,
   settings,
+  summary,
+  sessions,
   goals,
   personalBests,
 }: {
+  locale: string;
   blocks: Record<string, string>;
   settings: PublicSettings;
+  summary: TrainingSummary;
+  sessions: SessionPage;
   goals: (string | null)[][];
   personalBests: {
     id: number;
@@ -134,13 +150,32 @@ function Rowing({
 
       <Section id="training-log" title={section("training-log")}>
         <Markdown text={blocks["training-log-intro"]} />
-        {/* Phase 4 fills these from the uploaded training sessions, with count-up. */}
-        <Table
-          caption={section("training-log")}
-          headers={["", r("sessions"), r("hours"), r("kilometres")]}
-          rows={(["thisWeek", "thisMonth", "thisSeason"] as const).map((period) => [r(period), "—", "—", "—"])}
-        />
-        <PlaceholderNote text={t("placeholder.trainingLog")} />
+        {/* Summary statistics, so they count up (specification 5.2). */}
+        <div className="flex flex-col gap-3">
+          <Table
+            caption={r("training.summaryCaption")}
+            headers={[r("training.period"), r("sessions"), r("hours"), r("kilometres")]}
+            rows={(
+              [
+                ["thisWeek", summary.week],
+                ["thisMonth", summary.month],
+                ["thisSeason", summary.season],
+              ] as const
+            ).map(([period, totals]) => [
+              r(period),
+              <CountUp key="sessions" value={totals.sessions} />,
+              <CountUp key="hours" value={totals.hours} decimals={1} />,
+              <CountUp key="km" value={totals.kilometres} decimals={1} />,
+            ])}
+          />
+          <p className="text-[14px] text-grey-2">
+            {r("training.seasonFrom", { date: formatDate(summary.seasonStart, locale) ?? summary.seasonStart })}
+          </p>
+        </div>
+        <div className="flex flex-col gap-4">
+          <SubTitle>{r("training.listHeading")}</SubTitle>
+          <SessionList initial={sessions} locale={locale} />
+        </div>
       </Section>
     </>
   );

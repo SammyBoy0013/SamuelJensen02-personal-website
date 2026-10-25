@@ -1,0 +1,13 @@
+Session Information:
+Name:,Steady state
+Start Time:,10/24/2025 07:30 AM
+Device Info:,SpeedCoach GPS 2
+
+Session Summary:
+,Elapsed Time,Distance (GPS),Distance (IMP),Avg Split (GPS),Avg Speed (GPS),Avg Split (IMP),Avg Speed (IMP),Avg Stroke Rate,Total Strokes,Distance/Stroke (GPS),Distance/Stroke (IMP),Avg Heart Rate,Avg Power,Avg Catch,Avg Slip,Avg Finish,Avg Wash,Avg Force Avg,Avg Work,Avg Force Max,Avg Max Force Angle
+Total:,00:50:00.0,11200,11150,02:13.9,3.73,02:14.5,3.72,19.5,975,11.5,11.4,145,---,,,,,,,,
+
+Per-Stroke Data:
+Interval,Distance (GPS),Distance (IMP),Elapsed Time,Split (GPS),Speed (GPS),Split (IMP),Speed (IMP),Stroke Rate,Total Strokes,Distance/Stroke (GPS),Distance/Stroke (IMP),Heart Rate,Power,Catch,Slip,Finish,Wash,Force Avg,Work,Force Max,Max Force Angle,GPS Lat.,GPS Lon.
+1,11,11,00:00:03.0,02:16.0,3.67,02:16.0,3.67,19.0,1,11.0,11.0,120,---,,,,,,,,,0.000100,0.000100
+1,22,22,00:00:06.1,02:15.0,3.70,02:15.0,3.70,19.5,2,11.0,11.0,121,---,,,,,,,,,0.000200,0.000200

@@ -18,6 +18,7 @@ import {
   real,
   serial,
   text,
+  index,
   timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
@@ -109,7 +110,8 @@ export const goals = pgTable("goals", {
   text: localised("text").notNull(),
 });
 
-// Filled by the phase 4 importers. Summary figures only: no coordinates.
+// Filled by the training importers (lib/training). Summary figures only:
+// there is no column for coordinates, and the parsers drop them on reading.
 export const trainingSessions = pgTable(
   "training_sessions",
   {
@@ -128,8 +130,13 @@ export const trainingSessions = pgTable(
     avgWatts: integer("avg_watts"),
     visible: boolean("visible").notNull().default(true),
     autoHiddenReason: text("auto_hidden_reason"),
+    importedAt: timestamp("imported_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [uniqueIndex("training_sessions_source_external_id").on(t.source, t.externalId)],
+  (t) => [
+    uniqueIndex("training_sessions_source_external_id").on(t.source, t.externalId),
+    // Summaries, the session list and the duplicate check all search by start time.
+    index("training_sessions_start_time").on(t.startTime),
+  ],
 );
 
 export const golfResults = pgTable("golf_results", {

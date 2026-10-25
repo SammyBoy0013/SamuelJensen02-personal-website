@@ -166,6 +166,10 @@ export const settingsSchema = z.object({
   lowestHandicap: handicap,
   heightCm: centimetres,
   wingspanCm: centimetres,
+  seasonStart: z
+    .string()
+    .trim()
+    .regex(/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/, "Use month and day, such as 09-01 for 1 September."),
   social: z.object({ linkedin: url, strava: url, instagram: url, facebook: url }),
   features: z.object({ sponsors: z.boolean(), reportsAndPublications: z.boolean() }),
 });

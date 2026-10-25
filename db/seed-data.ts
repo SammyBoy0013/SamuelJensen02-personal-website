@@ -49,6 +49,8 @@ export type SettingsValues = {
   lowestHandicap: string;
   heightCm: number | null;
   wingspanCm: number | null;
+  /** When the training season starts each year, as "MM-DD". */
+  seasonStart: string;
   social: Record<(typeof socialLinks)[number]["key"], string>;
   features: { sponsors: boolean; reportsAndPublications: boolean };
 };
@@ -61,6 +63,8 @@ export const seedSettings: SettingsValues = {
   lowestHandicap: siteSettings.lowestHandicap,
   heightCm: rowing.vitalStatistics.height.value,
   wingspanCm: rowing.vitalStatistics.wingspan.value,
+  // Not in the page text: a default Samuel can change in admin → Settings.
+  seasonStart: "09-01",
   social: Object.fromEntries(socialLinks.map((s) => [s.key, s.href])) as SettingsValues["social"],
   features: { ...siteSettings.features },
 };

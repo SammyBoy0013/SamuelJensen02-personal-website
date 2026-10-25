@@ -39,7 +39,7 @@ export function SettingsForm({ initial }: { initial: Values }) {
     });
   };
 
-  const text = (key: "email" | "phone" | "dateOfBirth" | "handicap" | "lowestHandicap" | "heightCm" | "wingspanCm", label: string, help?: string, type = "text") => (
+  const text = (key: "email" | "phone" | "dateOfBirth" | "handicap" | "lowestHandicap" | "heightCm" | "wingspanCm" | "seasonStart", label: string, help?: string, type = "text") => (
     <FieldShell id={`settings-${key}`} label={label} help={help} error={errors[key]}>
       <input
         id={`settings-${key}`}
@@ -65,6 +65,11 @@ export function SettingsForm({ initial }: { initial: Values }) {
         {text("dateOfBirth", "Date of birth", "Never shown: the site shows only your age, on the CV page and PDF.", "date")}
         {text("heightCm", "Height (cm)")}
         {text("wingspanCm", "Wingspan (cm)")}
+      </fieldset>
+
+      <fieldset className="grid grid-cols-1 gap-5 rounded border border-line bg-white p-5 nav:grid-cols-2 nav:p-6">
+        <legend className="px-1 font-serif text-[24px] font-semibold text-ink">Training log</legend>
+        {text("seasonStart", "Season starts on (MM-DD)", "“This season” on the Rowing page counts from this day each year, such as 09-01 for 1 September.")}
       </fieldset>
 
       <fieldset className="grid grid-cols-1 gap-5 rounded border border-line bg-white p-5 nav:grid-cols-2 nav:p-6">

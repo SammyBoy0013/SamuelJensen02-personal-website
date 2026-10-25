@@ -75,7 +75,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
             onClick={() => pick(f)}
             className={`nav-label cursor-pointer rounded-full border px-4 py-2 transition-colors ${
               filter === f
-                ? "border-pink-text bg-pink-text text-white"
+                ? "border-pink-deep bg-pink-deep text-white"
                 : "border-line bg-white text-ink hover:border-pink hover:text-pink-text"
             }`}
           >

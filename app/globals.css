@@ -9,6 +9,8 @@
 :root {
   --pink: #e8196f;
   --pink-text: #c2105a;
+  /* Background behind small white text: just deep enough for AA (4.8:1 with white). */
+  --pink-deep: #dc1569;
   --pink-soft: #ffd3e4;
   --ink: #16131a;
   --paper: #f7f5f2;
@@ -28,6 +30,7 @@
 @theme inline {
   --color-pink: var(--pink);
   --color-pink-text: var(--pink-text);
+  --color-pink-deep: var(--pink-deep);
   --color-pink-soft: var(--pink-soft);
   --color-ink: var(--ink);
   --color-paper: var(--paper);

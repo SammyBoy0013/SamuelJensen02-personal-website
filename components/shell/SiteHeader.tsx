@@ -109,12 +109,12 @@ export function SiteHeader({ features }: { features: Features }) {
               const isCurrent = currentPage === page.key;
               return (
                 // Hover and keyboard focus both open the dropdown. The deeper
-                // pink (--pink-text) keeps the white 13 px labels at AA contrast.
+                // pink (--pink-deep) keeps the white 13 px labels at AA contrast.
                 <li key={page.key} className="group relative">
                   <Link
                     href={page.href}
                     aria-current={isCurrent ? "page" : undefined}
-                    className={`nav-label block border-b-2 px-3 py-2 transition-colors duration-200 hover:bg-pink-text hover:text-white group-focus-within:bg-pink-text group-focus-within:text-white ${
+                    className={`nav-label block border-b-2 px-3 py-2 transition-colors duration-200 hover:bg-pink-deep hover:text-white group-focus-within:bg-pink-deep group-focus-within:text-white ${
                       isCurrent ? "border-pink" : "border-transparent"
                     }`}
                   >
@@ -123,7 +123,7 @@ export function SiteHeader({ features }: { features: Features }) {
                   {visibleSections(page, features).length > 0 && (
                     <ul
                       aria-label={t("nav.sectionsOf", { page: t(`pages.${page.key}.title`) })}
-                      className="invisible absolute top-full left-0 min-w-56 bg-pink-text p-3 opacity-0 transition-opacity duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
+                      className="invisible absolute top-full left-0 min-w-56 bg-pink-deep p-3 opacity-0 transition-opacity duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
                     >
                       {visibleSections(page, features).map((s) => (
                         <li key={s.id}>

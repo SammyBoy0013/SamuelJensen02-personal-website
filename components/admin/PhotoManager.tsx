@@ -8,6 +8,7 @@ import type { ActionResult } from "@/lib/admin/actions";
 import { deletePhoto, reorderPhotos, updatePhoto, uploadPhoto, type PhotoKind } from "@/lib/admin/photo-actions";
 import { photoSchema, type PhotoForm } from "@/lib/admin/validation";
 import { attempt, FieldShell, Status, Toggle } from "./fields";
+import { FilePicker } from "./FilePicker";
 
 export type AdminPhoto = PhotoForm & { id: number; blobUrl: string; width: number; height: number; dominantColour: string };
 
@@ -205,13 +206,13 @@ function Uploader({ kind, onDone }: { kind: PhotoKind; onDone: () => void }) {
         including the location, before it is uploaded.
       </p>
       <FieldShell id="upload-file" label="Photo *" error={fileError ?? undefined}>
-        <input
+        <FilePicker
           key={resetKey}
           id="upload-file"
-          type="file"
+          buttonLabel="Choose photo"
           accept="image/jpeg,image/png,image/webp"
-          onChange={(e) => pick(e.target.files?.[0] ?? null)}
-          className="text-[14px]"
+          chosen={file ? [file.name] : []}
+          onChange={(picked) => pick(picked[0] ?? null)}
         />
       </FieldShell>
       {preview && <img src={preview} alt="" className="max-h-56 w-auto self-start rounded" />}

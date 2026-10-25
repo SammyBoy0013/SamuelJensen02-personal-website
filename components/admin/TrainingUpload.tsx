@@ -9,6 +9,7 @@ import { ACCEPTED, MAX_IMPORT_BYTES, parseTrainingFile } from "@/lib/training/pa
 import { sessionSchema } from "@/lib/training/schema";
 import type { ParsedSession, PreviewRow } from "@/lib/training/types";
 import { FieldShell, Status } from "./fields";
+import { FilePicker } from "./FilePicker";
 
 /** Matches BATCH_SIZE in lib/training/import.ts: larger uploads go in parts. */
 const BATCH = 2000;
@@ -153,23 +154,23 @@ export function TrainingUpload() {
       </p>
 
       <FieldShell id="training-files" label="Files">
-        <input
+        <FilePicker
           key={resetKey}
           id="training-files"
-          type="file"
+          buttonLabel="Choose files"
           multiple
           accept={ACCEPTED}
-          onChange={(e) => {
-            setFiles(Array.from(e.target.files ?? []));
+          chosen={files.map((f) => f.name)}
+          onChange={(picked) => {
+            setFiles(picked);
             setPreview(null);
             setStatus(null);
           }}
-          className="text-[14px]"
         />
       </FieldShell>
       <div className="flex flex-wrap items-center gap-3">
         <button type="button" className="button" onClick={read} disabled={pending || files.length === 0}>
-          {pending && !preview ? "Reading…" : "Preview"}
+          {pending && !preview ? "Checking…" : "Upload and check"}
         </button>
         <Status result={status} />
       </div>

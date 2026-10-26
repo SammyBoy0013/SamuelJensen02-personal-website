@@ -50,6 +50,10 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@react-pdf/renderer"],
   outputFileTracingIncludes: { "/api/cv-pdf": ["./lib/pdf/fonts/**"] },
   images: {
+    // AVIF where the browser supports it, else WebP (Next.js picks from the
+    // Accept header), with narrower widths so phones get phone-sized files.
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [420, 640, 750, 828, 1080, 1200, 1920, 2560],
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
   },
   turbopack: {

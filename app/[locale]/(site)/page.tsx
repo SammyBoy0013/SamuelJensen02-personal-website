@@ -124,7 +124,10 @@ function SlidePhoto({
   sizes?: string;
 }) {
   return (
-    <Parallax>
+    // Chrome does not count an image that fills the whole screen as the page's
+    // largest paint (it treats it as a background), so the hero photo stops
+    // 1 px short of the slide's ink edge. Unseen, but measurable for LCP.
+    <Parallax className={priority ? "inset-x-0 top-0 bottom-px" : undefined}>
       <Image
         src={photo.src}
         alt={photo.alt}

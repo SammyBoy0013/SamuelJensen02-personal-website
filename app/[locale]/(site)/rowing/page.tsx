@@ -94,7 +94,7 @@ function Rowing({
           <Markdown text={blocks.introduction} />
           <Video
             src="/media/carrying-the-single.mp4"
-            poster="/media/posters/carrying-the-single.jpg"
+            poster="/media/posters/carrying-the-single.webp"
             label={r("videoLabel")}
             className="aspect-[3/4] w-full nav:max-h-[640px]"
           />

@@ -5,9 +5,10 @@ import { useEffect, useRef, type ReactNode } from "react";
 /**
  * Gentle parallax for a slide photo: the photo drifts a little slower than the
  * page (from -7 % to 7 % of its height as the slide passes). It fills its
- * positioned parent; reduced motion keeps it still.
+ * positioned parent (or the box `className` sets); reduced motion keeps it
+ * still.
  */
-export function Parallax({ children }: { children: ReactNode }) {
+export function Parallax({ children, className = "inset-0" }: { children: ReactNode; className?: string }) {
   const frame = useRef<HTMLDivElement>(null);
   const layer = useRef<HTMLDivElement>(null);
 
@@ -38,7 +39,7 @@ export function Parallax({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div ref={frame} className="absolute inset-0 overflow-hidden">
+    <div ref={frame} className={`absolute overflow-hidden ${className}`}>
       <div ref={layer} className="absolute -inset-y-[8%] inset-x-0 will-change-transform">
         {children}
       </div>

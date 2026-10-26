@@ -270,7 +270,8 @@ html.home-snap footer {
   scroll-margin-top: 0;
 }
 
-/* First-visit loader: the seal ring draws itself, then the overlay fades.
+/* First-visit loader: the seal ring draws itself, then the overlay fades,
+   about 0.8 s in all (ring 0–0.5 s, seal 0.3–0.55 s, fade 0.6–0.8 s).
    An inline script adds [data-seen] for the rest of the session. */
 .loader {
   position: fixed;
@@ -280,7 +281,7 @@ html.home-snap footer {
   place-items: center;
   background: var(--ink);
   color: var(--white);
-  animation: loader-out 0.35s ease 1.2s forwards;
+  animation: loader-out 0.2s ease 0.6s forwards;
 }
 .loader svg {
   width: min(200px, 45vw);
@@ -289,11 +290,11 @@ html.home-snap footer {
 .loader .seal-ring {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: ring-draw 1s var(--ease-page) forwards;
+  animation: ring-draw 0.5s var(--ease-page) forwards;
 }
 .loader svg > :not(g[stroke]) {
   opacity: 0;
-  animation: seal-in 0.4s ease 0.7s forwards;
+  animation: seal-in 0.25s ease 0.3s forwards;
 }
 html[data-seen] .loader {
   display: none;
